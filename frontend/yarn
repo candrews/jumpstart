@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# https://github.com/srs/gradle-node-plugin/issues/24
+set -Eeuo pipefail
+
+GRADLE_USER_HOME="${GRADLE_USER_HOME:-${HOME}/.gradle}"
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+GRADLEW="$DIR/../gradlew"
+# This should match the "yarnWorkDir" setting in build.gradle
+PROJECTDIR="$DIR/.."
+YARNDIR="$PROJECTDIR/.gradle/yarn"
+
+YARN_VERSION=$("$GRADLEW" -p "${PROJECTDIR}" yarn_version -q | grep 'yarn version ' | awk -F" " '{print $3}')
+YARN_HOME="${YARNDIR}/yarn-${YARN_VERSION}/bin"
+PATH="${YARN_HOME}:${PATH}"
+
+exec "${DIR}/node" "${YARN_HOME}/yarn" "$@"
+
