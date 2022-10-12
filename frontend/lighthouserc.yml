@@ -1,0 +1,92 @@
+ci:
+  collect:
+    # Puppeteer is used to login
+    puppeteerScript: puppeteer-script.js
+    puppeteerLaunchOptions:
+      args:
+        - '--no-sandbox'
+        - '--headless'
+        - '--ignore-certificate-errors'
+    numberOfRuns: 3
+    url:
+      - https://localhost:8443
+    startServerCommand: "cd .. && ./gradlew bootRun"
+    startServerReadyPattern: "Tomcat started on port"
+    startServerReadyTimeout: 600000
+    settings:
+      onlyCategories:
+        - accessibility
+        - best-practices
+        - performance
+  assert:
+    preset: lighthouse:recommended
+    assertions:
+      categories:performance:
+        - warn
+#       customize your threshold
+        - minScore: 0.5
+        - aggregationMethod: pessimistic
+      categories:accessibility:
+        - warn
+#       customize your threshold
+        - minScore: 0.5
+        - aggregationMethod: pessimistic
+      categories:best-practices:
+        - warn
+#       customize your threshold
+        - minScore: 0.5
+        - aggregationMethod: pessimistic
+#     for subcategories of the main audit categories above, adjust assertions as desired below (these arbitrary examples set subcategories to return warnings instead of errors):
+#     customize selected assertions for performance
+      aria-valid-attr-value:
+        - warn
+      button-name:
+        - warn
+      crawlable-anchors:
+        - warn
+      font-display:
+        - warn
+#     customize selected assertions for accessibility
+      bypass:
+        - warn
+#     customize selected assertions for best-practices
+      duplicate-id-active:
+        - warn
+      unused-javascript:
+        - warn
+      valid-source-maps:
+        - warn
+      uses-passive-event-listeners:
+        - warn
+#     for categories not audited, turn off all assertions (turning off the audit does not turn off the assertions):
+#     turn off all assertions for seo
+      viewport: 'off'
+      meta-description: 'off'
+      http-status-code: 'off'
+      link-text: 'off'
+      document-title: 'off'
+      is-crawlable: 'off'
+      robots-txt: 'off'
+      image-alt: 'off'
+      hreflang: 'off'
+      canonical: 'off'
+      font-size: 'off'
+      plugins: 'off'
+      tap-targets: 'off'
+#     turn off all assertions for pwa
+      load-fast-enough-for-pwa: 'off'
+      works-offline: 'off'
+      offline-start-url: 'off'
+      is-on-https: 'off'
+      service-worker: 'off'
+      installable-manifest: 'off'
+      redirects-http: 'off'
+      splash-screen: 'off'
+      themed-omnibox: 'off'
+      content-width: 'off'
+      without-javascript: 'off'
+      apple-touch-icon: 'off'
+#     Note: there is some overlap of assertion auditRef ids between categories; turning off in one turns off in all; e.g. viewport is turned off for both seo and pwa above.
+      maskable-icon: 'off'
+#     csp-xss is too strict as of lighthouse 8.0.0, such as requiring report-uri. Will probably be fixed in a future version. See https://github.com/GoogleChrome/lighthouse/issues/12804
+      csp-xss: 'off'

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+  <changeSet id="hibernate_sequence" author="initial">
+      <createSequence sequenceName="hibernate_sequence" startValue="100000" />
+  </changeSet>
+  <changeSet id="spring-session-jdbc" runOnChange="true" author="spring-session">
+       <sql dbms="postgresql">SET SEARCH_PATH TO ${database.defaultSchemaName}</sql> <!-- workaround for https://github.com/liquibase/liquibase/issues/2234 -->
+
+       <sqlFile path="org/springframework/session/jdbc/schema-drop-h2.sql" dbms="h2" />
+       <sqlFile path="org/springframework/session/jdbc/schema-drop-hsqldb.sql" dbms="hsqldb" />
+       <sqlFile path="org/springframework/session/jdbc/schema-drop-mysql.sql" dbms="mysql" />
+       <sqlFile path="org/springframework/session/jdbc/schema-drop-postgresql.sql" dbms="postgresql" />
+       <sqlFile path="org/springframework/session/jdbc/schema-drop-sqlite.sql" dbms="sqlite" />
+       <sqlFile path="org/springframework/session/jdbc/schema-drop-sqlserver.sql" dbms="sqlserver" />
+
+       <sqlFile path="org/springframework/session/jdbc/schema-h2.sql" dbms="h2" />
+       <sqlFile path="org/springframework/session/jdbc/schema-hsqldb.sql" dbms="hsqldb" />
+       <sqlFile path="org/springframework/session/jdbc/schema-mysql.sql" dbms="mysql" />
+       <sqlFile path="org/springframework/session/jdbc/schema-postgresql.sql" dbms="postgresql" />
+       <sqlFile path="org/springframework/session/jdbc/schema-sqlite.sql" dbms="sqlite" />
+       <sqlFile path="org/springframework/session/jdbc/schema-sqlserver.sql" dbms="sqlserver" />
+  </changeSet>
+</databaseChangeLog>

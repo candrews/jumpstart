@@ -1,0 +1,6 @@
+spring.config.import: application-testcontainers.yml,application-selfsigned.yml
+
+# allow developers to more easily see these details to facilitate development
+# these details would be secured behind administrative credentials or unavailable entirely in production
+management.endpoint.health.show-details: always 
+management.endpoint.health.show-components: always
