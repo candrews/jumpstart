@@ -1,0 +1,37 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "includeForks": true,
+  "pinDigests": true,
+  "regexManagers": [
+    {
+      "description": "Update docker references in build.gradle",
+      "fileMatch": ["^build.gradle$"],
+      "matchStrings": [
+        "\"(?<depName>(?:gcr\\.io|docker\\.io)\\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?\""
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    },
+    {
+      "fileMatch": ["^build.gradle$"],
+      "matchStrings": ["nodeVersion *= *'(?<currentValue>.+?)';?\n?"],
+      "depNameTemplate": "node",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": ["^build.gradle$"],
+      "matchStrings": ["yarnVersion *= *'(?<currentValue>.+?)';?\n?"],
+      "depNameTemplate": "yarn",
+      "datasourceTemplate": "npm"
+    }
+  ],
+  "packageRules": [
+    {
+      "updateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
+  ]
+}

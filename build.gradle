@@ -1,0 +1,267 @@
+plugins {
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'org.springframework.boot' version '2.7.4'
+	id 'com.gorylenko.gradle-git-properties' version '2.4.1'
+	id 'name.remal.sonarlint' version '1.5.0'
+	id 'at.zierler.yamlvalidator' version '1.5.0'
+	id 'nebula.lint' version '17.7.0'
+	id 'nu.studer.credentials' version '3.0'
+	id 'com.github.node-gradle.node' version '3.4.0'
+	id 'io.freefair.lombok' version '6.5.1'
+	id 'java'
+	id 'jacoco'
+	id 'eclipse'
+}
+
+ext {
+	nodeVersion = '18.10.0'
+	yarnVersion = '1.22.19'
+}
+
+group = 'com.integralblue.demo'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+compileJava {
+	options.release = 17
+}
+
+dependencies {
+	implementation(platform("org.testcontainers:testcontainers-bom:1.17.5"))
+	implementation "org.springframework.boot:spring-boot-starter-actuator"
+	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+	implementation "org.springframework.boot:spring-boot-starter-security"
+	implementation "org.springframework.boot:spring-boot-starter-web"
+	implementation "org.springframework.boot:spring-boot-starter-validation"
+	implementation "org.springframework.session:spring-session-jdbc"
+	implementation "org.liquibase:liquibase-core"
+
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+	annotationProcessor 'org.springframework:spring-context-indexer'
+	annotationProcessor "org.hibernate.validator:hibernate-validator-annotation-processor"
+
+	developmentOnly "org.springframework.boot:spring-boot-devtools"
+
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+	testImplementation "org.springframework.security:spring-security-test"
+	testImplementation "org.mockito:mockito-junit-jupiter"
+	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly 'net.lbruun.springboot:preliquibase-spring-boot-starter:1.2.2' // necessary to create the db schema before liquibase runs so liquibase can use the created schema
+	testImplementation "org.testcontainers:testcontainers"
+	testImplementation "org.testcontainers:junit-jupiter"
+	testImplementation 'org.testcontainers:postgresql'
+	if (! project.hasProperty('no-testcontainers')) {
+		// testcontainers shouldn't be used in an actual, production environment (such as as on running in k8s, aws, etc)
+		// this property allows for the exclusion of testcontainers so "real" services can be used instead
+		runtimeOnly 'org.testcontainers:postgresql'
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+yamlValidator {
+	searchPaths = [
+		'src/',
+		'.gitlab-ci.yml',
+	]
+	allowDuplicates = false
+	searchRecursive = true
+}
+
+wrapper {
+	distributionType = Wrapper.DistributionType.ALL
+}
+
+gradleLint {
+	// 'unused-exclude-by-dep' doesn't work with BOM dependency management: https://github.com/nebula-plugins/gradle-lint-plugin/issues/224
+	rules  = ['archaic-wrapper']
+	criticalRules = [
+		'dependency-parentheses',
+		'overridden-dependency-version'] // <-- this will fail the build in the event of a violation
+}
+
+// reproducible builds
+// See: https://candrews.integralblue.com/2020/06/reproducible-builds-in-java/
+tasks.withType(AbstractArchiveTask) {
+	preserveFileTimestamps = false
+	reproducibleFileOrder = true
+}
+
+// See: https://candrews.integralblue.com/2022/10/improving-the-reproducibility-of-spring-boots-docker-image-builder/
+tasks.named("bootBuildImage") {
+	// See: https://paketo.io/docs/howto/java/
+	environment = [
+		// run the JLink tool and install a minimal JRE for runtime, reducing both image size and attack surface
+		"BP_JVM_JLINK_ENABLED" : "true",
+	]
+	docker {
+		// version and digest pin all image references. This ensures reproducibility.
+		// make sure to configure Renovate to keep these image references up to date.
+		// if these image references are not kept up to date, any security issues discovered within them will never be fixed.
+		// Use a tiny builder and run image (which produce a distroless-like image) to reduce both image size and attack surface.
+		builder = "docker.io/paketobuildpacks/builder-jammy-tiny:0.0.33@sha256:e092679d4c4648ee9eaec77fc277952c0104b7c0be8d69d4cf0796f9eeb3bbd9"
+		runImage = "docker.io/paketobuildpacks/run-jammy-tiny:0.1.15@sha256:07e64eabb1763b51bf38e9865e31362aa213163865e6a3132e4c4b43e95e273c"
+		buildpacks = [
+			"gcr.io/paketo-buildpacks/ca-certificates:3.4.0@sha256:18f4c21df483fad2fc947de4f80bbe6b635912ef78b4e9ed10c047eab4dd6f10",
+			"gcr.io/paketo-buildpacks/bellsoft-liberica:9.8.0@sha256:17d05fc67e416dc180b1bcc03d69fc8e3cdfeab928c7797d318c52cbad4051f2",
+			"gcr.io/paketo-buildpacks/syft:1.20.0@sha256:558356668ce53f4acf4252cc1cd26b7bc6303c4d3353acee60efc4122aaa25d2",
+			"gcr.io/paketo-buildpacks/executable-jar:6.5.0@sha256:971568ae093406911d36fb07c35f589ee69b6c7a2d3f6b90e9e4e924f05baa13",
+			"gcr.io/paketo-buildpacks/dist-zip:5.4.0@sha256:245717608ea3a379831ffe9f0a40c0ca82a851c9a0e60f36db9f727cf887f36a",
+			"gcr.io/paketo-buildpacks/spring-boot:5.19.0@sha256:8071eea13a32f563b2cfb8536d78f8a777f591aa991ca5cceaa37a72537a88dd",
+		]
+	}
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+check {
+	dependsOn jacocoTestCoverageVerification
+}
+
+springBoot {
+	buildInfo {
+		properties {
+			// necessary for reproducible builds, see https://github.com/spring-projects/spring-boot/issues/14494
+			time = null
+		}
+	}
+}
+
+bootJar {
+	archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}" // don't include the version in the artifact jar name
+}
+
+jacocoTestReport {
+	reports {
+		html.enabled true
+		xml.enabled true
+	}
+}
+
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = 0.10
+			}
+		}
+	}
+}
+
+String generatedFrontendResources = "$buildDir/generated-resources"
+String frontend = "$projectDir/frontend"
+
+String testsExecutedMarkerName = "${projectDir}/.tests.executed"
+
+node {
+	download = true
+	version = nodeVersion
+	yarnVersion = project.yarnVersion
+	nodeModulesDir = file("${frontend}")
+}
+
+yarn_test {
+	dependsOn yarn_build
+	setEnvironment CI:"true"
+	inputs.files fileTree("${frontend}/src")
+	inputs.file "${frontend}/package.json"
+	inputs.file "${frontend}/yarn.lock"
+
+	// allows easy triggering re-tests
+	doLast {
+		new File(testsExecutedMarkerName).text = 'delete this file to force re-execution JavaScript tests'
+	}
+	outputs.file testsExecutedMarkerName
+}
+
+yarn_install {
+	inputs.file "${frontend}/package.json"
+	inputs.file "${frontend}/yarn.lock"
+	outputs.dir "${frontend}/node_modules"
+}
+
+yarn_build {
+	dependsOn yarn_install
+	inputs.files fileTree("${frontend}/public")
+	inputs.files fileTree("${frontend}/src")
+	inputs.file "${frontend}/package.json"
+	inputs.file "${frontend}/yarn.lock"
+	outputs.dir "${frontend}/build"
+}
+
+task yarnCypressVersion(type: YarnTask) {
+	args = ['cypress', '--version']
+}
+
+task yarnLighthouseVersion(type: YarnTask) {
+	args = ['lhci', '--version']
+}
+
+task generateFrontendResources(type: Copy) {
+	dependsOn yarn_build
+	from "${frontend}/build"
+	into "$generatedFrontendResources/static"
+	outputs.dir "$generatedFrontendResources"
+}
+
+
+check {
+	dependsOn yarn_test
+}
+
+task start {
+	dependsOn yarn_build
+	dependsOn 'yarn_start'
+}
+
+sourceSets {
+	main {
+		output.dir(generatedFrontendResources, builtBy: generateFrontendResources)
+	}
+}
+
+clean {
+	delete testsExecutedMarkerName
+	delete "${frontend}/build"
+	delete generatedFrontendResources
+}
+
+eclipse {
+	autoBuildTasks generateFrontendResources
+}
+
+task coverageReport() {
+  dependsOn jacocoTestReport
+
+  def reportFile = project.file("build/reports/jacocoreport/jacocoTestReport/report.xml")
+  inputs.file(reportFile)
+
+  doLast {
+    def slurper = new XmlSlurper()
+    slurper.setFeature("http://apache.org/xml/features/disallow-doctype-decl", false)
+    slurper.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false)
+    def xml = slurper.parse(reportFile)
+    def counter = xml.counter.find {
+      node -> node.@type == 'BRANCH'
+    }
+    double missed = counter.@missed.toDouble() ?: 0
+    double covered = counter.@covered.toDouble() ?: 0
+    double total = missed + covered ?: 0
+    double percentage = (total == 0 ? 100 : (covered / total * 100))
+
+    printf "Missed %.0f branches%n", missed
+    printf "Covered %.0f branches%n", covered
+    printf "Total %.0f%%%n", percentage
+  }
+}
+jacocoTestReport.finalizedBy coverageReport

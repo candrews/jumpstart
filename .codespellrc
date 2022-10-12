@@ -1,0 +1,7 @@
+[codespell]
+skip = ./.idea,./frontend/yarn.lock,./bin,./build,./.git,./.gradle,./gradle/wrapper,./frontend/node_modules,./frontend/build,./frontend/yarn-error.log
+ignore-words-list = errorprone
+check-filenames =
+check-hidden =
+quiet = 2
+

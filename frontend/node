@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# https://github.com/srs/gradle-node-plugin/issues/24
+set -Eeuo pipefail
+
+GRADLE_USER_HOME="${GRADLE_USER_HOME:-${HOME}/.gradle}"
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+GRADLEW="$DIR/../gradlew"
+# This should match the "workDir" setting in build.gradle
+PROJECTDIR="${DIR}/.."
+NODEJS=$PROJECTDIR/.gradle/nodejs
+
+platform=$(uname -s | tr '[:upper:]' '[:lower:]')
+
+arch=$(uname -m | tr '[:upper:]' '[:lower:]')
+case $arch in
+x86_64)
+    nodearch=x64
+    ;;
+x86)
+    nodearch=x86
+    ;;
+esac
+
+NODE_VERSION=$("$GRADLEW" -p "$PROJECTDIR" npm_version -q | grep node: | awk -F"'" '{print $2}')
+NODE_HOME="${NODE_HOME:-$NODEJS/node-v${NODE_VERSION}-${platform}-${nodearch}}/bin"
+if [ ! -d "$NODE_HOME" ]; then
+  echo "Could not find gradle node"
+  exit 1
+fi
+
+PATH="${NODE_HOME}:${PATH}"
+exec "${NODE_HOME}/node" "$@"
+
