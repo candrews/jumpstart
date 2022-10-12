@@ -1,0 +1,23 @@
+# Make sure to change this value to the name of your application
+spring.application.name: jumpstart
+
+spring.profiles.active: local
+
+# By default, don't use test contexts. application-test.yml overrides this when testing.
+spring.liquibase.contexts: "!test"
+
+postgresql.version: 14
+
+spring.session.store-type: jdbc
+spring.session.jdbc.table-name: ${spring.jpa.properties.hibernate.default_schema}.SPRING_SESSION
+
+spring.sql.init.mode: always
+spring.jpa.hibernate.ddl-auto: validate
+spring.jpa.properties.hibernate.default_schema: ${spring.application.name}_db
+
+spring.liquibase.default-schema: ${spring.jpa.properties.hibernate.default_schema}
+spring.liquibase.change-log: classpath:/db/changelog/db.xml
+
+# Enable HTTP/2 Response Compression
+# IMHO, should be set by default, see https://github.com/spring-projects/spring-boot/issues/21369
+server.compression.enabled: true

@@ -1,0 +1,108 @@
+---
+stages:
+  - lint
+  - build
+  - test
+
+codespell:
+  stage: lint
+  # A codespell docker image would be better: https://github.com/codespell-project/codespell/issues/1892
+  image: python:3.10@sha256:53e577204d362233ee92aeb5119449271f5eb24f99c61464efe9167ddbc8640f
+  script:
+    - |
+      # shellcheck shell=sh
+    - pip3 install codespell
+    - codespell --version
+    - codespell
+
+shellcheck:
+  # See: https://candrews.integralblue.com/2022/02/shellcheck-scripts-embedded-in-gitlab-ci-yaml/
+  stage: lint
+  image: alpine:3.16.2@sha256:bc41182d7ef5ffc53a40b044e725193bc10142a1243f395ee852a8d9730fc2ad
+  before_script:
+    - |
+      # shellcheck shell=sh
+    - apk update
+    - apk add --no-cache git yq shellcheck
+  script:
+    - |
+      # shellcheck shell=sh
+      git ls-files --exclude='*.sh' --ignored -c -z | xargs -0r shellcheck -x
+      newline="$(printf '\nq')"
+      newline=${newline%q}
+      git ls-files --exclude='*.gitlab-ci.yml' --ignored -c | while IFS= read -r file; do
+        yq eval '.[] | select(tag=="!!map") | (.before_script,.script,.after_script) | select(. != null ) | path | ".[\"" + join("\"].[\"") + "\"]"' "${file}" | while IFS= read -r selector; do
+          script=$(yq eval "${selector} | join(\"${newline}\")" "${file}")
+          if ! printf '%s' "${script}" | shellcheck -; then
+              >&2 printf "\nError in %s in the script specified in %s:\n%s\n" "${file}" "${selector}" "${script}"
+              exit 1
+          fi
+        done
+      done
+
+build and test:
+  # the build job actually builds and tests
+  stage: build
+  services:
+    - name: docker:20.10.18-dind@sha256:5da8f946c2b2b9e37b6554680ef3cac95875cb4f5bf66001c80a5e0cc726ddac
+      alias: docker
+      # explicitly disable tls to avoid docker startup interruption as of docker 20.10.9
+      # there is so security concern because docker is only accessed from within the same system;
+      # there is no external network communication to worry about.
+      # See https://github.com/testcontainers/testcontainers-java/pull/4573
+      command: ["--tls=false"]
+  variables:
+    # Instruct Testcontainers to use the daemon of DinD.
+    DOCKER_HOST: "tcp://docker:2375"
+    DOCKER_TLS_CERTDIR: ""
+  image: eclipse-temurin:17.0.3_7-jdk@sha256:92d11e1a09397dc0aab2bbf2349d1c81ea031a129c55757a82225d9145bf9bcc
+  before_script:
+    - |
+      # shellcheck shell=sh
+      GRADLE_USER_HOME="$(pwd)/.gradle"
+      export GRADLE_USER_HOME
+  script:
+    - |
+      # shellcheck shell=sh
+      # gradle's build task will build, assemble, and test the project.
+      # -Pno-testcontainers removes testcontainer runtime dependencies that are useful for developers.
+      # These aren't used in production because real services (ex, a database) on a real server area used instead.
+      # Note that bootBuildImage builds the image, but it's not pushed anywhere.
+      # In the real world, you would push it somewhere using the --publishImage argument to bootBuildImage.
+      ./gradlew build bootBuildImage -Pno-testcontainers
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull-push
+    paths:
+      - .gradle/wrapper
+      - .gradle/caches
+      - .gradle/yarn
+      - .gradle/nodejs
+      - frontend/node_modules
+  artifacts:
+    when: always
+    paths:
+      - build/libs/*
+      - build/reports/*
+      - build/pom.xml
+    reports:
+      junit: [build/reports/**/TEST-*.xml, build/reports/cypress/results-*.xml]
+  coverage: '/Total \d+(\.\d+)?\%/'
+
+convert jacaco to cobertura coverage:
+  # gitlab doesn't support jacoco format: https://gitlab.com/gitlab-org/gitlab/-/issues/227345
+  # so convert from jacoco to cobertura: https://docs.gitlab.com/ee/user/project/merge_requests/test_coverage_visualization.html
+  stage: test
+  image: haynes/jacoco2cobertura:1.0.9@sha256:690ab3ff5d7ef7c1f1596b0c7c7e84b9684947fcea168565b1ebaf7974e87f24
+  script:
+    - |
+      # shellcheck shell=sh
+      # convert report from jacoco to cobertura
+      python /opt/cover2cover.py build/reports/jacoco/test/jacocoTestReport.xml src/main/java > build/reports/coverage.xml
+      # read the <source></source> tag and prepend the path to every filename attribute
+      python /opt/source2filename.py build/reports/coverage.xml
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: build/reports/coverage.xml
