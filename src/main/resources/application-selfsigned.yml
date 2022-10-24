@@ -1,3 +1,4 @@
+---
 # Enable a self signed certificate and run the server on HTTPS port 8443
 server.ssl.key-alias: selfsigned_localhost_sslserver
 server.ssl.key-password: changeit
