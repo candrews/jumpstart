@@ -2,7 +2,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
 	id 'org.springframework.boot' version '2.7.4'
 	id 'com.gorylenko.gradle-git-properties' version '2.4.1'
-	id 'name.remal.sonarlint' version '1.5.0'
+	id 'name.remal.sonarlint' version '2.0.0-rc-2'
 	id 'nebula.lint' version '17.7.0'
 	id 'nu.studer.credentials' version '3.0'
 	id 'com.github.node-gradle.node' version '3.4.0'
