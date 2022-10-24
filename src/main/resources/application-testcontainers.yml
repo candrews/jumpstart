@@ -1,3 +1,4 @@
+---
 # ?TC_TMPFS=/var/lib/postgresql/data:rw is a performance optimization to use a tmpfs for postgres data accelerating startup/runtime, see https://www.testcontainers.org/modules/databases/jdbc/
 internal.datasource.url: jdbc:tc:postgresql:${postgresql.version}:///?TC_TMPFS=/var/lib/postgresql/data:rw
 spring.datasource.url: ${internal.datasource.url}

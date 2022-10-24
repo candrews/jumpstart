@@ -15,6 +15,14 @@ codespell:
     - codespell --version
     - codespell
 
+yamllint:
+  stage: lint
+  image: registry.gitlab.com/pipeline-components/yamllint:0.21.1@sha256:d4b27b14a3cda4d0178cbd4605b3a31a027c3bebb64135ffc48446aa17c8495c
+  script:
+    - |
+      # shellcheck shell=sh
+      yamllint -s .
+
 shellcheck:
   # See: https://candrews.integralblue.com/2022/02/shellcheck-scripts-embedded-in-gitlab-ci-yaml/
   stage: lint

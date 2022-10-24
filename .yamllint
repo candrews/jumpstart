@@ -1,0 +1,13 @@
+---
+extends: default
+
+ignore: |
+  .git/
+  .gradle/
+  bin/
+  build/
+  frontend/build/
+  frontend/node_modules/
+
+rules:
+  line-length: disable

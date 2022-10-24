@@ -1,1 +1,2 @@
+---
 spring.config.import: application-test.yml,application-testcontainers.yml,application-selfsigned.yml
