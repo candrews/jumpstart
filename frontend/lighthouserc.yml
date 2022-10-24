@@ -1,3 +1,4 @@
+---
 ci:
   collect:
     # Puppeteer is used to login
@@ -23,21 +24,21 @@ ci:
     assertions:
       categories:performance:
         - warn
-#       customize your threshold
+        # customize your threshold
         - minScore: 0.5
         - aggregationMethod: pessimistic
       categories:accessibility:
         - warn
-#       customize your threshold
+        # customize your threshold
         - minScore: 0.5
         - aggregationMethod: pessimistic
       categories:best-practices:
         - warn
-#       customize your threshold
+        # customize your threshold
         - minScore: 0.5
         - aggregationMethod: pessimistic
-#     for subcategories of the main audit categories above, adjust assertions as desired below (these arbitrary examples set subcategories to return warnings instead of errors):
-#     customize selected assertions for performance
+        # for subcategories of the main audit categories above, adjust assertions as desired below (these arbitrary examples set subcategories to return warnings instead of errors):
+        # customize selected assertions for performance
       aria-valid-attr-value:
         - warn
       button-name:
@@ -46,10 +47,10 @@ ci:
         - warn
       font-display:
         - warn
-#     customize selected assertions for accessibility
+        # customize selected assertions for accessibility
       bypass:
         - warn
-#     customize selected assertions for best-practices
+        # customize selected assertions for best-practices
       duplicate-id-active:
         - warn
       unused-javascript:
@@ -58,8 +59,8 @@ ci:
         - warn
       uses-passive-event-listeners:
         - warn
-#     for categories not audited, turn off all assertions (turning off the audit does not turn off the assertions):
-#     turn off all assertions for seo
+      # for categories not audited, turn off all assertions (turning off the audit does not turn off the assertions):
+      # turn off all assertions for seo
       viewport: 'off'
       meta-description: 'off'
       http-status-code: 'off'
@@ -73,7 +74,7 @@ ci:
       font-size: 'off'
       plugins: 'off'
       tap-targets: 'off'
-#     turn off all assertions for pwa
+      # turn off all assertions for pwa
       load-fast-enough-for-pwa: 'off'
       works-offline: 'off'
       offline-start-url: 'off'
@@ -86,7 +87,7 @@ ci:
       content-width: 'off'
       without-javascript: 'off'
       apple-touch-icon: 'off'
-#     Note: there is some overlap of assertion auditRef ids between categories; turning off in one turns off in all; e.g. viewport is turned off for both seo and pwa above.
+      # Note: there is some overlap of assertion auditRef ids between categories; turning off in one turns off in all; e.g. viewport is turned off for both seo and pwa above.
       maskable-icon: 'off'
-#     csp-xss is too strict as of lighthouse 8.0.0, such as requiring report-uri. Will probably be fixed in a future version. See https://github.com/GoogleChrome/lighthouse/issues/12804
+      # csp-xss is too strict as of lighthouse 8.0.0, such as requiring report-uri. Will probably be fixed in a future version. See https://github.com/GoogleChrome/lighthouse/issues/12804
       csp-xss: 'off'

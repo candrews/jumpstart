@@ -1,1 +1,2 @@
+---
 spring.liquibase.contexts: test

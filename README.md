@@ -33,7 +33,7 @@ The demonstrated application itself is a simple "Hello World" application. There
 * Various code quality tools, linters, and performance testers, including (but not limited to):
   * [Codespell](https://github.com/codespell-project/codespell)
   * [SonarLint](https://www.sonarlint.org/)
-  * [yamlvalidator](https://plugins.gradle.org/plugin/at.zierler.yamlvalidator)
+  * [yamllint](https://github.com/adrienverge/yamllint)
   * [Shellcheck](https://github.com/koalaman/shellcheck)
   * [Lighthouse Web Performance and Quality Testing](https://developers.google.com/web/tools/lighthouse)
 
