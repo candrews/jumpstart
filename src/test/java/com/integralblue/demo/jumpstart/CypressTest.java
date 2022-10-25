@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 	private static String cypressVersion;
 
 	@BeforeAll
-	private static void beforeAll() throws Exception {
+	/* default */ static void beforeAll() throws Exception {
 		cypressVersion = getCypressVersion();
 		log.info("Tests will run using Cypress version {}", cypressVersion);
 	}
