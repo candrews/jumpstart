@@ -41,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 	private static final String GITHUB_ENVIRONMENT_NAME_PREFIX="GITHUB_";
 
 	@BeforeAll
-	private static void beforeAll() throws Exception {
+	/* default */ static void beforeAll() throws Exception {
 		lhciVersion = getLhciVersion();
 		log.info("Tests will run using lhci version {}", lhciVersion);
 	}
