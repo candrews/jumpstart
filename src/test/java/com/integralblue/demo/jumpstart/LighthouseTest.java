@@ -81,7 +81,7 @@ import lombok.extern.slf4j.Slf4j;
 		if (System.getProperty("os.name").startsWith("Win")) {
 			cmd = "./gradlew.bat";
 		}
-		final Process process = Runtime.getRuntime().exec(new String[]{cmd, "yarnLighthouseVersion"}, null, new File("."));
+		final Process process = Runtime.getRuntime().exec(new String[]{cmd, "npmLighthouseVersion"}, null, new File("."));
 		Assert.state(process.waitFor() == 0,"lhci version command did not complete successfully");
 		final String output = StreamUtils.copyToString(process.getInputStream(), StandardCharsets.UTF_8);
 		final Matcher matcher = Pattern.compile("^(?<version>\\d++(?:\\.\\d++)++)$", Pattern.MULTILINE).matcher(output);

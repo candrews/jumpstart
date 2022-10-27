@@ -14,7 +14,6 @@ plugins {
 
 ext {
 	nodeVersion = '18.10.0'
-	yarnVersion = '1.22.19'
 }
 
 group = 'com.integralblue.demo'
@@ -156,16 +155,31 @@ String testsExecutedMarkerName = "${projectDir}/.tests.executed"
 node {
 	download = true
 	version = nodeVersion
-	yarnVersion = project.yarnVersion
 	nodeModulesDir = file("${frontend}")
+	npmInstallCommand = System.getenv("CI") ? 'ci' : 'install'
 }
 
-yarn_test {
-	dependsOn yarn_build
-	setEnvironment CI:"true"
+task nodeDir {
+	dependsOn nodeSetup
+	println nodeSetup.nodeDir.get()
+}
+
+npm_run_build {
+	dependsOn npmInstall
+	inputs.files fileTree("${frontend}/public")
 	inputs.files fileTree("${frontend}/src")
 	inputs.file "${frontend}/package.json"
-	inputs.file "${frontend}/yarn.lock"
+	inputs.file "${frontend}/package-lock.json"
+	outputs.dir "${frontend}/build"
+}
+
+npm_run_test {
+	dependsOn npm_run_build
+	setEnvironment CI:"true"
+	inputs.files fileTree("${frontend}/public")
+	inputs.files fileTree("${frontend}/src")
+	inputs.file "${frontend}/package.json"
+	inputs.file "${frontend}/package-lock.json"
 
 	// allows easy triggering re-tests
 	doLast {
@@ -174,44 +188,32 @@ yarn_test {
 	outputs.file testsExecutedMarkerName
 }
 
-yarn_install {
-	inputs.file "${frontend}/package.json"
-	inputs.file "${frontend}/yarn.lock"
-	outputs.dir "${frontend}/node_modules"
+task npmCypressVersion(type: NpxTask) {
+	dependsOn npmInstall
+	command = "cypress"
+	args = ["--version"]
 }
 
-yarn_build {
-	dependsOn yarn_install
-	inputs.files fileTree("${frontend}/public")
-	inputs.files fileTree("${frontend}/src")
-	inputs.file "${frontend}/package.json"
-	inputs.file "${frontend}/yarn.lock"
-	outputs.dir "${frontend}/build"
-}
-
-task yarnCypressVersion(type: YarnTask) {
-	args = ['cypress', '--version']
-}
-
-task yarnLighthouseVersion(type: YarnTask) {
-	args = ['lhci', '--version']
+task npmLighthouseVersion(type: NpxTask) {
+	dependsOn npmInstall
+	command = "lhci"
+	args = ["--version"]
 }
 
 task generateFrontendResources(type: Copy) {
-	dependsOn yarn_build
+	dependsOn npm_run_build_build
 	from "${frontend}/build"
 	into "$generatedFrontendResources/static"
 	outputs.dir "$generatedFrontendResources"
 }
 
-
 check {
-	dependsOn yarn_test
+	dependsOn npm_run_test
 }
 
 task start {
-	dependsOn yarn_build
-	dependsOn 'yarn_start'
+	dependsOn npm_run_build
+	dependsOn 'npm_start'
 }
 
 sourceSets {
