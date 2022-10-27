@@ -9,4 +9,4 @@ PROJECTDIR="${DIR}/.."
 
 NODE_HOME="$("$GRADLEW" -q -p "$PROJECTDIR" nodeDir | tail -n1)/bin"
 PATH="${NODE_HOME}:${PATH}"
-exec "${NODE_HOME}/node" "$@"
+exec "${NODE_HOME}/npx" "$@"

@@ -84,7 +84,6 @@ build and test:
     paths:
       - .gradle/wrapper
       - .gradle/caches
-      - .gradle/yarn
       - .gradle/nodejs
       - frontend/node_modules
   artifacts:

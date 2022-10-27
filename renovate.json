@@ -20,12 +20,6 @@
       "matchStrings": ["nodeVersion *= *'(?<currentValue>.+?)';?\n?"],
       "depNameTemplate": "node",
       "datasourceTemplate": "docker"
-    },
-    {
-      "fileMatch": ["^build.gradle$"],
-      "matchStrings": ["yarnVersion *= *'(?<currentValue>.+?)';?\n?"],
-      "depNameTemplate": "yarn",
-      "datasourceTemplate": "npm"
     }
   ],
   "packageRules": [
