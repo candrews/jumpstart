@@ -19,7 +19,7 @@ The demonstrated application itself is a simple "Hello World" application. There
   * [MockMvc](https://spring.io/guides/gs/testing-web/)
   * [Liquibase](https://www.liquibase.org/)
 * Frontend
-  * [Yarn](https://yarnpkg.com/)
+  * [NPM](https://www.npmjs.com/package/npm)
   * [ReactJS](https://reactjs.org/)
   * [TypeScript](https://www.typescriptlang.org/)
   * [Create React App](https://github.com/facebook/create-react-app)
@@ -54,7 +54,7 @@ This project requires Java 17 (or later).
 Import this Gradle project using your IDE of choice.
 Or, if you don't want to use an IDE, you can run the project from the command line: `./gradlew bootRun` The site will be accessible at [https://localhost:8443](https://localhost:8443)
 
-Installing node and yarn is not necessary. Gradle installs and manages node and yarn; to use the gradle provided versions, run `./node` and `./yarn` from the `frontend` directory.
+Installing node and npm is not necessary. Gradle installs and manages node and npm; to use the gradle provided versions, run `./node` and `./npm` from the `frontend` directory.
 
 By default, this project is set up to use [Testcontainers](https://www.testcontainers.org/) to run all required services.
 Testcontainers requires docker.
@@ -63,7 +63,7 @@ Test containers will attempt to start a privileged container for Ryuk; if you ca
 To use a postgresql database other than the one provided by testcontainers, set the `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, and `SPRING_DATASOURCE_PASSWORD` environment variables appropriately. For example, this command will connect to a local postgres database:
 `SPRING_DATASOURCE_URL="jdbc:postgresql://localhost:5432/jumpstart" SPRING_DATASOURCE_USERNAME="someuser" SPRING_DATASOURCE_PASSWORD="somepassword" ./gradlew bootRun`
 
-If a frontend file is changed using an IDE (ex, IntelliJ or Eclipse), the change will automatically be applied in the running application using [LiveReload](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#using-boot-devtools-livereload). To have the change applied in the browser without having to refresh the page, install the appropriate LiveReload extension for your browser. [Chrome](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/) Therefore, `yarn start` isn't necessary - but it can still be used by running `./yarn start` from the `frontend` directory.
+If a frontend file is changed using an IDE (ex, IntelliJ or Eclipse), the change will automatically be applied in the running application using [LiveReload](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#using-boot-devtools-livereload). To have the change applied in the browser without having to refresh the page, install the appropriate LiveReload extension for your browser. [Chrome](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei?hl=en) [Firefox](https://addons.mozilla.org/en-US/firefox/addon/livereload-web-extension/) Therefore, `npm start` isn't necessary - but it can still be used by running `./npm start` from the `frontend` directory.
 
 ### Local Site Credentials
 The credentials to login are: `user`/`password`
@@ -96,8 +96,8 @@ The Project Lombok Eclipse integration must be setup. See the Eclipse instructio
 
 There are a few ways to run cypress tests locally:
 * Run the application, for example, by running `./gradlew bootRun`,then, from within the [`frontend`](frontend) directory, either run:
-    * `./yarn cypress-open` to open the Cypress GUI. This allows you to run individual tests in Chrome so you can watch them as they execute. This approach is great for debugging and visually verifying that your tests work.
-    * `./yarn cypress-run` runs the entire test suite in a headless (Electron) browser all through the command line. This is an excellent option for just running the tests and seeing a pass/fail.
+    * `./npm run cypress-open` to open the Cypress GUI. This allows you to run individual tests in Chrome so you can watch them as they execute. This approach is great for debugging and visually verifying that your tests work.
+    * `./npm run cypress-run` runs the entire test suite in a headless (Electron) browser all through the command line. This is an excellent option for just running the tests and seeing a pass/fail.
 * Run the application's tests with `./gradle test`. One of the tests run is [`CypressTest`](./src/test/java/com/integralblue/demo/jumpstart/CypressTest.java) which will run the Cypress tests. This approach is used by [`.gitlab-ci.yml`](.gitlab-ci.yml) when running continuous integration.
 
 Regardless of approach, tests results (including screenshots and videos) are written to the [`build/reports/cypress/`](build/reports/cypress/) directory.
@@ -111,8 +111,8 @@ The configuration file at [`frontend/cypress.config.ts`](frontend/cypress.config
 #### Running the Lighthouse Tests
 
 There are a few ways to run cypress tests locally:
-* Run the application, for example, by running `./gradlew bootRun`,then, from within the [`frontend`](frontend) directory, run `./yarn lhci autorun --collect.startServerCommand=""`
-* From within the [`frontend`](frontend) directory, run `./yarn lhci autorun` This command will start the application for you.
+* Run the application, for example, by running `./gradlew bootRun`,then, from within the [`frontend`](frontend) directory, run `./npm run lhci autorun --collect.startServerCommand=""`
+* From within the [`frontend`](frontend) directory, run `./npm run lhci autorun` This command will start the application for you.
 * Run the application's tests with `./gradle test`. One of the tests run is [`LighthouseTest`](../src/test/java/com/integralblue/demo/jumpstart/LighthouseTest.java) which will run the Lighthouse tests. This approach is used by [`.gitlab-ci.yml`](.gitlab-ci.yml) when running continuous integration.
 
 #### Configuring Lighthouse

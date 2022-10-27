@@ -8,8 +8,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress-open": "yarn run cypress open",
-    "cypress-run": "rm -rf ../build/reports/cypress || true && yarn run cypress run"
+    "cypress-open": "cypress open",
+    "cypress-run": "rm -rf ../build/reports/cypress || true && cypress run"
   },
   "eslintConfig": {
     "extends": "react-app"
