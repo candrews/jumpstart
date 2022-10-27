@@ -7,7 +7,7 @@ stages:
 codespell:
   stage: lint
   # A codespell docker image would be better: https://github.com/codespell-project/codespell/issues/1892
-  image: python:3.10@sha256:53e577204d362233ee92aeb5119449271f5eb24f99c61464efe9167ddbc8640f
+  image: python:3.10@sha256:a368af37ef8dda4b4d0e6379e556f6ec67475dfa5ab95efca4c1884952b85c26
   script:
     - |
       # shellcheck shell=sh
