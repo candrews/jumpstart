@@ -23,7 +23,7 @@ The demonstrated application itself is a simple "Hello World" application. There
   * [ReactJS](https://reactjs.org/)
   * [TypeScript](https://www.typescriptlang.org/)
   * [Create React App](https://github.com/facebook/create-react-app)
-  * [Enzyme](https://enzymejs.github.io/enzyme/)
+  * [React Testing Library](https://testing-library.com/react)
   * [Cypress](https://www.cypress.io/)
 * Services
   * [PostgreSQL](https://www.postgresql.org/)
