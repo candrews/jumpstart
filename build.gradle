@@ -3,7 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.4'
 	id 'com.gorylenko.gradle-git-properties' version '2.4.1'
 	id 'name.remal.sonarlint' version '2.0.0-rc-2'
-	id 'nebula.lint' version '17.7.0'
+	id 'nebula.lint' version '17.7.1'
 	id 'nu.studer.credentials' version '3.0'
 	id 'com.github.node-gradle.node' version '3.4.0'
 	id 'io.freefair.lombok' version '6.5.1'
