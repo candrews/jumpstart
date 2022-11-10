@@ -28,7 +28,8 @@ The demonstrated application itself is a simple "Hello World" application. There
 * Services
   * [PostgreSQL](https://www.postgresql.org/)
 * Miscellaneous
-  * [GitLab CI](https://docs.gitlab.com/ee/ci/)
+  * [GitLab CI](https://docs.gitlab.com/ee/ci/) Not using GitLab? Delete `.gitlab-ci.yml`
+  * [GitHub Actions](https://github.com/features/actions) Not using GitHub? Delete the `.github` directory
   * [Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate/) configuration included to keep dependencies up to date: [renovate.json](renovate.json). See [The How and Why Automating Dependency Updates](https://candrews.integralblue.com/2021/03/automating-dependency-updates/).
 * Various code quality tools, linters, and performance testers, including (but not limited to):
   * [Codespell](https://github.com/codespell-project/codespell)

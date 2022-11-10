@@ -1,0 +1,58 @@
+---
+name: Build
+
+# Run this workflow every time a new commit pushed to your repository
+on:  # yamllint disable-line rule:truthy
+  - push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: codespell-project/actions-codespell@master
+      - uses: ibiqlik/action-yamllint@v3
+        with:
+          strict: true
+      - run: |
+          # shellcheck shell=sh
+          sudo apt-get install -y git shellcheck
+          sudo curl --fail -Ls "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/local/bin/yq
+          sudo chmod +x /usr/local/bin/yq
+          git ls-files --exclude='*.sh' --ignored -c -z | xargs -0r shellcheck -x
+          git ls-files --exclude='.github/**/*.yml' --ignored -c | while IFS= read -r file; do
+           yq eval '.[] | select(tag=="!!map").[].steps.[].run | select(. != null ) | path | ".[\"" + join("\"].[\"") + "\"]"' "${file}" | while IFS= read -r selector; do
+              script=$(yq eval "${selector}" "${file}")
+              if ! printf '%s' "${script}" | shellcheck -; then
+                  >&2 printf "\nError in %s in the script specified in %s:\n%s\n" "${file}" "${selector}" "${script}"
+                  exit 1
+              fi
+            done
+          done
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      - uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: "gradle"
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          # shellcheck shell=sh
+          # gradle's build task will build, assemble, and test the project.
+          # -Pno-testcontainers removes testcontainer runtime dependencies that are useful for developers.
+          # These aren't used in production because real services (ex, a database) on a real server area used instead.
+          # Note that bootBuildImage builds the image, but it's not pushed anywhere.
+          # In the real world, you would push it somewhere using the --publishImage argument to bootBuildImage.
+          arguments: build bootBuildImage -Pno-testcontainers
+      - name: upload build reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-reports
+          path: build/reports/
+      - name: upload build jar
+        uses: actions/upload-artifact@v3
+        with:
+          name: jar
+          path: build/libs/jumpstart.jar
