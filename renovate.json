@@ -25,6 +25,7 @@
   "packageRules": [
     {
       "updateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "platformAutomerge": true,
       "automerge": true
     }
   ]
