@@ -41,7 +41,7 @@
     "@lhci/cli": "0.9.0",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "29.2.2",
-    "cypress": "10.10.0",
+    "cypress": "11.0.1",
     "cypress-multi-reporters": "1.6.1",
     "mocha-junit-reporter": "2.1.0",
     "puppeteer": "18.2.1"
