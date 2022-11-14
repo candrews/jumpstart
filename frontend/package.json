@@ -43,7 +43,7 @@
     "@types/jest": "29.2.2",
     "cypress": "11.0.1",
     "cypress-multi-reporters": "1.6.1",
-    "mocha-junit-reporter": "2.1.0",
+    "mocha-junit-reporter": "2.2.0",
     "puppeteer": "19.2.2"
   },
   "browserslist": {
