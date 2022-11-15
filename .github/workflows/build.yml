@@ -9,9 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8  # v3
       - uses: codespell-project/actions-codespell@master
-      - uses: ibiqlik/action-yamllint@v3
+      - uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c  # v3
         with:
           strict: true
       - run: |
@@ -30,14 +30,14 @@ jobs:
             done
           done
       - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@v1
-      - uses: actions/setup-java@v3
+        uses: gradle/wrapper-validation-action@55e685c48d84285a5b0418cd094606e199cca3b6  # v1
+      - uses: actions/setup-java@de1bb2b0c5634f0fc4438d7aa9944e68f9bf86cc  # v3
         with:
           java-version: "17"
           distribution: "temurin"
           cache: "gradle"
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@3fbe033aaae657f011f88f29be9e65ed26bd29ef  # v2
         with:
           # shellcheck shell=sh
           # gradle's build task will build, assemble, and test the project.
@@ -47,12 +47,12 @@ jobs:
           # In the real world, you would push it somewhere using the --publishImage argument to bootBuildImage.
           arguments: build bootBuildImage -Pno-testcontainers
       - name: upload build reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@83fd05a356d7e2593de66fc9913b3002723633cb  # v3
         with:
           name: build-reports
           path: build/reports/
       - name: upload build jar
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@83fd05a356d7e2593de66fc9913b3002723633cb  # v3
         with:
           name: jar
           path: build/libs/jumpstart.jar
