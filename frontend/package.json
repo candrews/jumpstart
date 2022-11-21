@@ -17,10 +17,10 @@
   "dependencies": {
     "@date-io/core": "2.16.0",
     "@date-io/moment": "2.16.1",
-    "@mui/material": "5.10.14",
-    "@mui/icons-material": "5.10.14",
-    "@emotion/styled": "11.10.5",
     "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
+    "@mui/icons-material": "5.10.14",
+    "@mui/material": "5.10.14",
     "@types/js-cookie": "3.0.2",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
@@ -36,15 +36,15 @@
     "typescript": "4.9.3"
   },
   "devDependencies": {
-    "nock": "13.2.9",
-    "react-scripts": "5.0.1",
     "@lhci/cli": "0.10.0",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "29.2.3",
     "cypress": "11.1.0",
     "cypress-multi-reporters": "1.6.1",
     "mocha-junit-reporter": "2.2.0",
-    "puppeteer": "19.2.2"
+    "nock": "13.2.9",
+    "puppeteer": "19.2.2",
+    "react-scripts": "5.0.1"
   },
   "browserslist": {
     "production": [
