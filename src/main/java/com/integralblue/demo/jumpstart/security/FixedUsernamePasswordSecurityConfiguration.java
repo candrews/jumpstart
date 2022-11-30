@@ -21,7 +21,7 @@ public class FixedUsernamePasswordSecurityConfiguration {
 	@SuppressWarnings("PMD.SignatureDeclareThrowsException")
 	public SecurityFilterChain filterChain(final @NonNull HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
+			.authorizeHttpRequests()
 			.anyRequest()
 			.authenticated()
 			.and()
