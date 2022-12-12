@@ -11,3 +11,5 @@ ignore: |
 
 rules:
   line-length: disable
+  comments:
+    min-spaces-from-content: 1
