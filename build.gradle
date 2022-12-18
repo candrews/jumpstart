@@ -6,7 +6,7 @@ plugins {
 	id 'nebula.lint' version '17.7.1'
 	id 'nu.studer.credentials' version '3.0'
 	id 'com.github.node-gradle.node' version '3.5.0'
-	id 'io.freefair.lombok' version '6.6'
+	id 'io.freefair.lombok' version '6.6.1'
 	id 'java'
 	id 'jacoco'
 	id 'eclipse'
