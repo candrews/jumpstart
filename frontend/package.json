@@ -35,7 +35,7 @@
   "devDependencies": {
     "@lhci/cli": "0.10.0",
     "@testing-library/react": "^13.4.0",
-    "@types/jest": "29.2.6",
+    "@types/jest": "29.4.0",
     "cypress": "12.3.0",
     "cypress-multi-reporters": "1.6.2",
     "eslint-plugin-anti-trojan-source": "^1.1.0",
