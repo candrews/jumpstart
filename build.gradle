@@ -101,7 +101,7 @@ tasks.named("bootBuildImage") {
 			"gcr.io/paketo-buildpacks/ca-certificates:3.5.1@sha256:ad50eae8fa996f0bb7c85f48135e81121fb1a5f8c9e98cf57703a623e07bd479",
 			"gcr.io/paketo-buildpacks/bellsoft-liberica:9.10.3@sha256:736714391ea5105dbccd15c946730db3401bef9d4f17be72bef94cee5434bb90",
 			"gcr.io/paketo-buildpacks/syft:1.24.2@sha256:99b7438f35eba70cdb4940e1311745e0c9088302fd70791fef0006866c88d772",
-			"gcr.io/paketo-buildpacks/executable-jar:6.5.0@sha256:971568ae093406911d36fb07c35f589ee69b6c7a2d3f6b90e9e4e924f05baa13",
+			"gcr.io/paketo-buildpacks/executable-jar:6.6.0@sha256:2049b40ea94f47f4256f7cb94518143c58e7d165fe9c93d817985f96df4104b6",
 			"gcr.io/paketo-buildpacks/dist-zip:5.5.0@sha256:9fb837bc36484225fc80b462e5e5dcfc5cf9dc39f8951b6686b98d7c9cbeca67",
 			"gcr.io/paketo-buildpacks/spring-boot:5.22.1@sha256:734d955907f396075ed6596822d16ecd25b5ca41815045eeb580faa7096d870d",
 		]
