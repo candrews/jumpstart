@@ -18,7 +18,7 @@
     "@emotion/styled": "11.10.6",
     "@mui/icons-material": "5.11.9",
     "@mui/material": "5.11.9",
-    "@types/js-cookie": "3.0.2",
+    "@types/js-cookie": "3.0.3",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
