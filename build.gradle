@@ -201,7 +201,7 @@ task npmLighthouseVersion(type: NpxTask) {
 }
 
 task generateFrontendResources(type: Copy) {
-	dependsOn npm_run_build_build
+	dependsOn npm_run_build
 	from "${frontend}/build"
 	into "$generatedFrontendResources/static"
 	outputs.dir "$generatedFrontendResources"
