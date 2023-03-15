@@ -3,7 +3,7 @@
   "extends": [
     "config:base"
   ],
-  "includeForks": true,
+  "forkProcessing": "enabled",
   "pinDigests": true,
   "platformAutomerge": true,
   "regexManagers": [
