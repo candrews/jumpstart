@@ -20,7 +20,7 @@
     "@mui/material": "5.11.15",
     "@types/js-cookie": "3.0.3",
     "@types/node": "18.15.11",
-    "@types/react": "18.0.32",
+    "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "@types/react-router-dom": "5.3.3",
     "js-cookie": "3.0.1",
