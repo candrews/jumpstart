@@ -4,10 +4,9 @@
   "private": true,
   "proxy": "https://localhost:8443",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest run",
     "cypress-open": "cypress open",
     "cypress-run": "rm -rf ../build/reports/cypress || true && cypress run"
   },
@@ -29,20 +28,29 @@
     "prop-types": "15.8.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.10.0",
-    "typescript": "4.9.5"
+    "react-router-dom": "6.10.0"
   },
   "devDependencies": {
     "@lhci/cli": "0.11.0",
+    "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "^14.0.0",
-    "@types/jest": "29.5.0",
+    "@typescript-eslint/eslint-plugin": "5.57.0",
+    "@typescript-eslint/parser": "5.57.0",
+    "@vitejs/plugin-react": "3.1.0",
+    "@vitest/coverage-c8": "0.29.8",
     "cypress": "12.9.0",
     "cypress-multi-reporters": "1.6.3",
+    "eslint": "8.37.0",
     "eslint-plugin-anti-trojan-source": "^1.1.0",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "jsdom": "21.1.1",
     "mocha-junit-reporter": "2.2.0",
     "nock": "13.3.0",
     "puppeteer": "19.8.5",
-    "react-scripts": "5.0.1"
+    "typescript": "4.9.5",
+    "vite": "4.2.1",
+    "vitest": "0.29.8"
   },
   "browserslist": {
     "production": [
