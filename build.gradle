@@ -13,7 +13,7 @@ plugins {
 }
 
 ext {
-	nodeVersion = '19.8.1'
+	nodeVersion = '19.9.0'
 }
 
 group = 'com.integralblue.demo'
