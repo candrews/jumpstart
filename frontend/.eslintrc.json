@@ -1,6 +1,23 @@
 {
-  "extends": ["react-app", "plugin:anti-trojan-source/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:react-hooks/recommended",
+    "plugin:anti-trojan-source/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "semi": "warn"
   }
 }
+
