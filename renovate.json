@@ -17,6 +17,15 @@
       "versioningTemplate": "docker"
     },
     {
+      "description": "Update docker references in Java test files",
+      "fileMatch": ["src/test/.*\\.java"],
+      "matchStrings": [
+        "\"(?<depName>(?:gcr\\.io|docker\\.io)\\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?\""
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    },
+    {
       "fileMatch": ["^build.gradle$"],
       "matchStrings": ["nodeVersion *= *'(?<currentValue>.+?)';?\n?"],
       "depNameTemplate": "node",
