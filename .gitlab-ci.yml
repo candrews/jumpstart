@@ -63,7 +63,7 @@ build and test:
     # Instruct Testcontainers to use the daemon of DinD.
     DOCKER_HOST: "tcp://docker:2375"
     DOCKER_TLS_CERTDIR: ""
-  image: eclipse-temurin:17.0.6_10-jdk@sha256:eaf8250ca78bc5394fe89189b4a9933ac45d2af9060113f0065886beb921e652
+  image: eclipse-temurin:17.0.6_10-jdk@sha256:ed08a92e51b5f4f9bb054fb2caa12a00d0e091be08bcf4bd21c02fc9dd41913e
   before_script:
     - |
       # shellcheck shell=sh
