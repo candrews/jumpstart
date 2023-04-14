@@ -39,6 +39,10 @@ ci:
         - aggregationMethod: pessimistic
         # for subcategories of the main audit categories above, adjust assertions as desired below (these arbitrary examples set subcategories to return warnings instead of errors):
         # customize selected assertions for performance
+      bf-cache:
+        # Puppeteer disables the bfcache by default due to a bug where the page freezes. Puppeteer scripts won’t restore the page from bfcache even if real users would see the page restored from bfcache.
+        # See https://github.com/puppeteer/puppeteer/issues/8197
+        - "off"
       aria-valid-attr-value:
         - warn
       button-name:
