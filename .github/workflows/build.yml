@@ -37,7 +37,7 @@ jobs:
           distribution: "temurin"
           cache: "gradle"
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@5056fa9d50478a14af3c9925c12ca02318659d3e # v2
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629 # v2
         with:
           # shellcheck shell=sh
           # gradle's build task will build, assemble, and test the project.
