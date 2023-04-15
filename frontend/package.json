@@ -31,7 +31,7 @@
     "react-router-dom": "6.10.0"
   },
   "devDependencies": {
-    "@lhci/cli": "0.11.1",
+    "@lhci/cli": "0.12.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "^14.0.0",
     "@typescript-eslint/eslint-plugin": "5.58.0",
