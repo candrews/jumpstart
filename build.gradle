@@ -5,7 +5,7 @@ plugins {
 	id 'name.remal.sonarlint' version '3.0.11'
 	id 'nebula.lint' version '18.0.3'
 	id 'nu.studer.credentials' version '3.0'
-	id 'com.github.node-gradle.node' version '3.6.0'
+	id 'com.github.node-gradle.node' version '4.0.0'
 	id 'io.freefair.lombok' version '8.0.1'
 	id 'java'
 	id 'jacoco'
