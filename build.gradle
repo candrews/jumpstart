@@ -87,9 +87,6 @@ tasks.withType(AbstractArchiveTask) {
 tasks.named("bootBuildImage") {
 	// See: https://paketo.io/docs/howto/java/
 
-	// run the JLink tool and install a minimal JRE for runtime, reducing both image size and attack surface
-	environment["BPJVM_JLINK_ENABLED"] = "true"
-
 	docker {
 		// version and digest pin all image references. This ensures reproducibility.
 		// make sure to configure Renovate to keep these image references up to date.
