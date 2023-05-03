@@ -6,12 +6,12 @@ stages:
 
 codespell:
   stage: lint
-  # A codespell docker image would be better: https://github.com/codespell-project/codespell/issues/1892
-  image: python:3.11@sha256:44665524e94401ec9a433d878427920657eee93873cd4a5ccea0fa6fbafc2546
+  image:
+    name: ghcr.io/codespell-project/actions-codespell/stable:v1@sha256:e0b956b13127fa8dce307a31d58a4bca1bd81bf2348854ff350dc62c895c5425
+    entrypoint: [""]
   script:
     - |
       # shellcheck shell=sh
-    - pip3 install codespell
     - codespell --version
     - codespell
 
