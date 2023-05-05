@@ -92,7 +92,7 @@ tasks.named("bootBuildImage") {
 		// make sure to configure Renovate to keep these image references up to date.
 		// if these image references are not kept up to date, any security issues discovered within them will never be fixed.
 		// Use a tiny builder and run image (which produce a distroless-like image) to reduce both image size and attack surface.
-		builder = "docker.io/paketobuildpacks/builder-jammy-tiny:0.0.130@sha256:6e57ee06bc1f9e6a2db2fd7b6f9cfd7b605bdc86740b732ee7bf251ea045aa8d"
+		builder = "docker.io/paketobuildpacks/builder-jammy-tiny:0.0.131@sha256:96906c225317c2be4ccbd0bfb624acf95e9c4ec0d434246991ff67b4cceb3236"
 		runImage = "docker.io/paketobuildpacks/run-jammy-tiny:0.1.56@sha256:c831f67d4fc0e8fcbcbd5afaae4d5fabe052248ce8482d6f36b1db76c5d78957"
 		buildpacks = [
 			"gcr.io/paketo-buildpacks/ca-certificates:3.6.1@sha256:b41cc786c7b844e91360733fcbd0863771c4498a2143da2e500dd08371e25b39",
