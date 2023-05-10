@@ -7,7 +7,7 @@ stages:
 codespell:
   stage: lint
   image:
-    name: ghcr.io/codespell-project/actions-codespell/stable:v1@sha256:e0b956b13127fa8dce307a31d58a4bca1bd81bf2348854ff350dc62c895c5425
+    name: ghcr.io/codespell-project/actions-codespell/stable:v2@sha256:3728259d3c5a08ff68bdfa1edbdd92b18523e05961948fc99d41d2c2db166ab0
     entrypoint: [""]
   script:
     - |
