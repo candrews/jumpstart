@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 /** Security configuration when using fixed username/passwords.
  *
  * This configuration should only be used for testing!
@@ -20,15 +22,14 @@ public class FixedUsernamePasswordSecurityConfiguration {
 	@Bean
 	@SuppressWarnings("PMD.SignatureDeclareThrowsException")
 	public SecurityFilterChain filterChain(final @NonNull HttpSecurity http) throws Exception {
-		http
-			.authorizeHttpRequests()
-			.anyRequest()
-			.authenticated()
-			.and()
-			.formLogin()
-			.and()
-			.httpBasic();
-		return http.build();
+		return
+			http
+			.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+				.anyRequest()
+				.authenticated())
+			.formLogin(withDefaults())
+			.httpBasic(withDefaults())
+			.build();
 	}
 
 	@Bean
