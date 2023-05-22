@@ -1,7 +1,7 @@
 ---
 # Enable a self signed certificate and run the server on HTTPS port 8443
 server.ssl.key-alias: selfsigned_localhost_sslserver
-server.ssl.key-password: changeit
+server.ssl.key-store-password: changeit
 # generated using: keytool -genkey -keyalg RSA -alias selfsigned_localhost_sslserver -keystore src/main/resources/local-ssl-server.jks -storepass changeit -validity 360 -keysize 2048
 server.ssl.key-store: classpath:local-ssl-server.jks
 server.ssl.key-store-provider: SUN
