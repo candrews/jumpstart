@@ -53,7 +53,7 @@ And now go do the real work :-)
 ## Developer Setup
 This project requires Java 17 (or later).
 Import this Gradle project using your IDE of choice.
-Or, if you don't want to use an IDE, you can run the project from the command line: `./gradlew bootRun` The site will be accessible at [https://localhost:8443](https://localhost:8443)
+Or, if you don't want to use an IDE, you can run the project from the command line: `./gradlew bootTestRun` The site will be accessible at [https://localhost:8443](https://localhost:8443)
 
 Installing node and npm is not necessary. Gradle installs and manages node and npm; to use the gradle provided versions, run `./node` and `./npm` from the `frontend` directory.
 
@@ -96,7 +96,7 @@ The Project Lombok Eclipse integration must be setup. See the Eclipse instructio
 #### Running the Cypress Tests
 
 There are a few ways to run cypress tests locally:
-* Run the application, for example, by running `./gradlew bootRun`,then, from within the [`frontend`](frontend) directory, either run:
+* Run the application, for example, by running `./gradlew bootTestRun`,then, from within the [`frontend`](frontend) directory, either run:
     * `./npm run cypress-open` to open the Cypress GUI. This allows you to run individual tests in Chrome so you can watch them as they execute. This approach is great for debugging and visually verifying that your tests work.
     * `./npm run cypress-run` runs the entire test suite in a headless (Electron) browser all through the command line. This is an excellent option for just running the tests and seeing a pass/fail.
 * Run the application's tests with `./gradle test`. One of the tests run is [`CypressTest`](./src/test/java/com/integralblue/demo/jumpstart/CypressTest.java) which will run the Cypress tests. This approach is used by [`.gitlab-ci.yml`](.gitlab-ci.yml) when running continuous integration.
@@ -112,7 +112,7 @@ The configuration file at [`frontend/cypress.config.ts`](frontend/cypress.config
 #### Running the Lighthouse Tests
 
 There are a few ways to run cypress tests locally:
-* Run the application, for example, by running `./gradlew bootRun`,then, from within the [`frontend`](frontend) directory, run `./npm run lhci autorun --collect.startServerCommand=""`
+* Run the application, for example, by running `./gradlew bootTestRun`,then, from within the [`frontend`](frontend) directory, run `./npm run lhci autorun --collect.startServerCommand=""`
 * From within the [`frontend`](frontend) directory, run `./npm run lhci autorun` This command will start the application for you.
 * Run the application's tests with `./gradle test`. One of the tests run is [`LighthouseTest`](../src/test/java/com/integralblue/demo/jumpstart/LighthouseTest.java) which will run the Lighthouse tests. This approach is used by [`.gitlab-ci.yml`](.gitlab-ci.yml) when running continuous integration.
 

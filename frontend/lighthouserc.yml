@@ -11,7 +11,7 @@ ci:
     numberOfRuns: 3
     url:
       - https://localhost:8443
-    startServerCommand: "cd .. && ./gradlew bootRun"
+    startServerCommand: "cd .. && ./gradlew bootTestRun"
     startServerReadyPattern: "Tomcat started on port"
     startServerReadyTimeout: 600000
     settings:

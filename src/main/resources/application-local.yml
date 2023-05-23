@@ -1,5 +1,5 @@
 ---
-spring.config.import: application-testcontainers.yml,application-selfsigned.yml
+spring.config.import: application-selfsigned.yml
 
 # allow developers to more easily see these details to facilitate development
 # these details would be secured behind administrative credentials or unavailable entirely in production
