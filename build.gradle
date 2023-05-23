@@ -41,6 +41,7 @@ dependencies {
 	annotationProcessor "org.hibernate.validator:hibernate-validator-annotation-processor"
 
 	developmentOnly "org.springframework.boot:spring-boot-devtools"
+	testImplementation "org.springframework.boot:spring-boot-devtools"
 
 	testImplementation "org.springframework.boot:spring-boot-starter-test"
 	testImplementation "org.springframework.security:spring-security-test"
@@ -50,11 +51,6 @@ dependencies {
 	testImplementation "org.testcontainers:testcontainers"
 	testImplementation "org.testcontainers:junit-jupiter"
 	testImplementation 'org.testcontainers:postgresql'
-	if (! project.hasProperty('no-testcontainers')) {
-		// testcontainers shouldn't be used in an actual, production environment (such as as on running in k8s, aws, etc)
-		// this property allows for the exclusion of testcontainers so "real" services can be used instead
-		runtimeOnly 'org.testcontainers:postgresql'
-	}
 }
 
 configurations {

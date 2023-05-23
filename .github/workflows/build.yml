@@ -41,11 +41,9 @@ jobs:
         with:
           # shellcheck shell=sh
           # gradle's build task will build, assemble, and test the project.
-          # -Pno-testcontainers removes testcontainer runtime dependencies that are useful for developers.
-          # These aren't used in production because real services (ex, a database) on a real server area used instead.
           # Note that bootBuildImage builds the image, but it's not pushed anywhere.
           # In the real world, you would push it somewhere using the --publishImage argument to bootBuildImage.
-          arguments: build bootBuildImage -Pno-testcontainers
+          arguments: build bootBuildImage
       - name: upload build reports
         if: success() || failure() # always run even if the previous step fails
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
