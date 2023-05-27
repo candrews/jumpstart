@@ -52,7 +52,7 @@ build and test:
   # the build job actually builds and tests
   stage: build
   services:
-    - name: docker:24.0.2-dind@sha256:3082f3db41163b823d306f15ce4fe032d56c72c90ef377f67eb0375a552a7131
+    - name: docker:24.0.2-dind@sha256:f44bd33ee57baf0830d8c07a1abd7ce40301a446e819b86ad0d99735c049f6a5
       alias: docker
       # explicitly disable tls to avoid docker startup interruption as of docker 20.10.9
       # there is so security concern because docker is only accessed from within the same system;
