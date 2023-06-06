@@ -71,6 +71,10 @@ gradleLint {
 		'overridden-dependency-version'] // <-- this will fail the build in the event of a violation
 }
 
+sonarLint {
+	sonarProperty('sonar.nodejs.executable', project.provider { "${node.computedNodeDir.get()}/bin/node"}) // configure Node.js executable path via `sonar.nodejs.executable` Sonar property
+}
+
 // reproducible builds
 // See: https://candrews.integralblue.com/2020/06/reproducible-builds-in-java/
 tasks.withType(AbstractArchiveTask) {
