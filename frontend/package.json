@@ -18,7 +18,7 @@
     "@mui/icons-material": "5.11.16",
     "@mui/material": "5.13.5",
     "@types/js-cookie": "3.0.3",
-    "@types/node": "18.16.17",
+    "@types/node": "18.16.18",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",
     "@types/react-router-dom": "5.3.3",
@@ -47,7 +47,7 @@
     "jsdom": "22.1.0",
     "mocha-junit-reporter": "2.2.0",
     "nock": "13.3.1",
-    "puppeteer": "20.5.0",
+    "puppeteer": "20.6.0",
     "typescript": "5.1.3",
     "vite": "4.3.9",
     "vitest": "0.32.0"
