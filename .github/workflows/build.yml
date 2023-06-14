@@ -1,6 +1,8 @@
 ---
 name: Build
 
+permissions: {}
+
 # Run this workflow every time a new commit pushed to your repository
 on:  # yamllint disable-line rule:truthy
   - push
@@ -10,6 +12,8 @@ env:
 
 jobs:
   build:
+    permissions:
+      packages: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3
