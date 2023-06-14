@@ -48,6 +48,29 @@ shellcheck:
         done
       done
 
+checkov:
+  stage: lint
+  image:
+    name: bridgecrew/checkov:2.3.292@sha256:2a6069d3d26e6d16e1b8ab7159af7b03ff256e6f8bbb2b0a13c5e168d1eed208
+    entrypoint:
+      - '/usr/bin/env'
+      - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  script:
+    - |
+      # shellcheck shell=sh
+      checkov \
+        --quiet \
+        --directory . \
+        --output cli \
+        --output junitxml \
+        --output-file-path console,checkov.test.xml
+  artifacts:
+    when: always
+    reports:
+      junit: "checkov.test.xml"
+    paths:
+      - "checkov.test.xml"
+
 build and test:
   # the build job actually builds and tests
   stage: build
