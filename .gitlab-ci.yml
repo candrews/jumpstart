@@ -4,6 +4,15 @@ stages:
   - build
   - test
 
+workflow:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+      variables:
+        IMAGE_NAME: "${CI_REGISTRY_IMAGE}:latest"
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+      variables:
+        IMAGE_NAME: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}"
+
 codespell:
   stage: lint
   image:
@@ -86,7 +95,6 @@ build and test:
     # Instruct Testcontainers to use the daemon of DinD.
     DOCKER_HOST: "tcp://docker:2375"
     DOCKER_TLS_CERTDIR: ""
-    IMAGE_NAME: "${CI_REGISTRY_IMAGE}"
     DOCKER_USERNAME: "${CI_REGISTRY_USER}"
     DOCKER_PASSWORD: "${CI_REGISTRY_PASSWORD}"
   image: eclipse-temurin:17.0.7_7-jdk@sha256:8f6d7e879e6fe5fa2f1c9b434fa5d5da7f34a53f6f49766e54b1a3e1ef721be0
@@ -99,11 +107,7 @@ build and test:
     - |
       # shellcheck shell=sh
       # gradle's build task will build, assemble, and test the project.
-      if [ "${CI_COMMIT_REF_NAME:-}" = "${CI_DEFAULT_BRANCH:-}" ]; then
-        ./gradlew build bootBuildImage --imageName "${IMAGE_NAME}" --publishImage
-      else
-        ./gradlew build bootBuildImage --imageName "${IMAGE_NAME}"
-      fi
+      ./gradlew build bootBuildImage --imageName "${IMAGE_NAME}" --publishImage
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull-push
