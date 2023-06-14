@@ -87,6 +87,11 @@ tasks.named("bootBuildImage") {
 	// See: https://paketo.io/docs/howto/java/
 
 	docker {
+		publishRegistry {
+			username = System.env.DOCKER_USERNAME
+			password = System.env.DOCKER_PASSWORD
+		}
+
 		// version and digest pin all image references. This ensures reproducibility.
 		// make sure to configure Renovate to keep these image references up to date.
 		// if these image references are not kept up to date, any security issues discovered within them will never be fixed.
