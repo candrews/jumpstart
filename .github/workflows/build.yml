@@ -5,6 +5,9 @@ name: Build
 on:  # yamllint disable-line rule:truthy
   - push
 
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,14 +39,21 @@ jobs:
           java-version: "17"
           distribution: "temurin"
           cache: "gradle"
-      - name: Build with Gradle
+      - name: Setup Gradle
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629 # v2
-        with:
+      - name: Build with Gradle
+        run: |
           # shellcheck shell=sh
           # gradle's build task will build, assemble, and test the project.
-          # Note that bootBuildImage builds the image, but it's not pushed anywhere.
-          # In the real world, you would push it somewhere using the --publishImage argument to bootBuildImage.
-          arguments: build bootBuildImage
+          if [ "${GITHUB_REF_NAME:-}" = "${GITHUB_DEFAULT_BRANCH:-}" ]; then
+            ./gradlew build bootBuildImage --imageName "${IMAGE_NAME}" --publishImage
+          else
+            ./gradlew build bootBuildImage --imageName "${IMAGE_NAME}"
+          fi
+        env:
+          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          DOCKER_USERNAME: ${{ github.actor }}
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
       - name: upload build reports
         if: success() || failure() # always run even if the previous step fails
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
