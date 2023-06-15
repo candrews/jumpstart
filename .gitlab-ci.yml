@@ -26,7 +26,7 @@ yamllint:
 shellcheck:
   # See: https://candrews.integralblue.com/2022/02/shellcheck-scripts-embedded-in-gitlab-ci-yaml/
   stage: lint
-  image: alpine:3.18.2@sha256:e13ce78057d83fcd976883c58b5169b0f60da578bd481d67532570eb75e4add5
+  image: alpine:3.18.2@sha256:5246eec74dffc9a5f6608c4e7c81bd33455ecc64f558bf49eb334c4f05e47eee
   before_script:
     - |
       # shellcheck shell=sh
