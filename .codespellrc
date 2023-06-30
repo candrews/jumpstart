@@ -1,5 +1,5 @@
 [codespell]
-skip = ./.idea,./frontend/package-lock.json,./bin,./build,./.git,./.gradle,./gradle/wrapper,./frontend/node_modules,./frontend/build
+skip = ./.idea,./frontend/package-lock.json,./bin,./build,./.git,./.gradle,./gradle/wrapper,./frontend/node_modules,./frontend/build,./frontend/coverage
 ignore-words-list = errorprone
 check-filenames =
 check-hidden =
