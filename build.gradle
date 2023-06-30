@@ -31,6 +31,17 @@ compileJava {
 	options.release = 17
 }
 
+
+// Enable dependency locking: https://docs.gradle.org/current/userguide/dependency_locking.html
+// To achieve reproducible builds, it is necessary to lock versions of dependencies and transitive dependencies such that a build with the same inputs will always resolve the same module versions.
+// This is called dependency locking.
+// From a security perspective, dependency locking mitigate some supply chain attack risks, as well as provide other benefits.
+// From a development/maintainability perspective, dependency locking ensure that dependency changes can only occurs with commits to source control, so all dependency changes are intentional, tracked via the commit history, and enjoy all other change management benefits.
+dependencyLocking {
+	lockAllConfigurations()
+	lockMode = LockMode.STRICT
+}
+
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-actuator"
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa"
