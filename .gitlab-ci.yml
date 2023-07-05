@@ -89,7 +89,7 @@ build and test:
     IMAGE_NAME: "${CI_REGISTRY_IMAGE}"
     DOCKER_USERNAME: "${CI_REGISTRY_USER}"
     DOCKER_PASSWORD: "${CI_REGISTRY_PASSWORD}"
-  image: eclipse-temurin:17.0.7_7-jdk@sha256:5b6830f9d06a322ee4a64accfc82ba9c67e09770abad51fa5f7184ab214f3495
+  image: eclipse-temurin:17.0.7_7-jdk@sha256:8f6d7e879e6fe5fa2f1c9b434fa5d5da7f34a53f6f49766e54b1a3e1ef721be0
   before_script:
     - |
       # shellcheck shell=sh
