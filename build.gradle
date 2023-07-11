@@ -13,7 +13,7 @@ plugins {
 }
 
 ext {
-	nodeVersion = '20.3.1'
+	nodeVersion = '20.4.0'
 }
 
 // Remove when using Spring Boot 3.2 or later, as Spring Boot 3.2 will use snakeyaml 2.0: https://github.com/spring-projects/spring-boot/issues/35982
