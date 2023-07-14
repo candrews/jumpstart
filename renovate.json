@@ -9,6 +9,24 @@
   "platformAutomerge": true,
   "regexManagers": [
     {
+      "fileMatch": ["\\.yml$"],
+      "matchStrings": ["SARIF_CONVERTER_VERSION *: *\"(?<currentValue>.+?)\""],
+      "depNameTemplate": "ignis-build/sarif-converter/",
+      "datasourceTemplate": "gitlab-releases"
+    },
+    {
+      "fileMatch": ["\\.yml$"],
+      "matchStrings": ["MICROSOFT_SARIF_MULTITOOL_VERSION *: *\"(?<currentValue>.+?)\""],
+      "depNameTemplate": "@microsoft/sarif-multitool",
+      "datasourceTemplate": "npm"
+    },
+    {
+      "fileMatch": ["\\.yml$"],
+      "matchStrings": ["MITRE_SAF_VERSION *: *\"(?<currentValue>.+?)\""],
+      "depNameTemplate": "@mitre/saf",
+      "datasourceTemplate": "npm"
+    },
+    {
       "description": "Update docker references in build.gradle",
       "fileMatch": ["^build.gradle$"],
       "matchStrings": [
