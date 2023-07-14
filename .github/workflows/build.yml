@@ -90,3 +90,140 @@ jobs:
         if: success() || failure()
         with:
           sarif_file: results.sarif
+  scap:
+    needs: build
+    permissions:
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+    runs-on: ubuntu-latest
+    container:
+      image: alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1
+      env:
+        SCAP_SECURITY_GUIDE_VERSION: "0.1.69"
+        MICROSOFT_SARIF_MULTITOOL_VERSION: "4.3.1"
+        MITRE_SAF_VERSION: "1.2.27"
+        SSG_DIR: "ssg"
+    steps:
+      - name: Install prerequisites
+        run: |
+          # shellcheck shell=sh
+          set -eu
+          apk add curl docker openscap-docker npm gcompat unzip
+          npm install -g "@microsoft/sarif-multitool@${MICROSOFT_SARIF_MULTITOOL_VERSION}"
+          npm install -g "@mitre/saf@${MITRE_SAF_VERSION}"
+          mkdir -p "${SSG_DIR}"
+          curl "https://github.com/ComplianceAsCode/content/releases/download/v${SCAP_SECURITY_GUIDE_VERSION}/scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}.zip" -Lso "${SSG_DIR}/ssg.zip"
+          unzip "${SSG_DIR}/ssg.zip" -d "${SSG_DIR}"
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@a9794064588be971151ec5e7144cb535bcb56e36 # v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull the docker image to scan
+        run: |
+          # shellcheck shell=sh
+          set -eu
+          # oscap-docker requires the image to have been pulled
+          docker pull "${IMAGE_NAME}"
+      - name: Run openscap
+        run: |
+          # shellcheck shell=sh
+          set -eu
+          # extract /etc/os-release
+          container_id=$(docker create "${IMAGE_NAME}")
+          docker cp "$container_id:/etc/os-release" .
+          docker rm "$container_id"
+          unset container_id
+          # determine which ssg to use based on /etc/os-release
+          # see https://www.freedesktop.org/software/systemd/man/os-release.html
+          version_id=$(awk -F= '$1=="VERSION_ID" { print $2 ;}' os-release | sed 's/"//g')
+          id=$(awk -F= '$1=="ID" { print $2 ;}' os-release | sed 's/"//g')
+          if [ "${id}" = "ubuntu" ] && echo "${version_id}" | grep -qE '^18\.04(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ubuntu1804-ds.xml"
+          elif [ "${id}" = "ubuntu" ] && echo "${version_id}" | grep -qE '^20\.04(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ubuntu2004-ds.xml"
+          elif [ "${id}" = "ubuntu" ] && echo "${version_id}" | grep -qE '^22\.04(\..*)?$' ; then\
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ubuntu2204-ds.xml"
+          elif [ "${id}" = "centos" ] && echo "${version_id}" | grep -qE '^7(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-centos7-ds.xml"
+          elif [ "${id}" = "centos" ] && echo "${version_id}" | grep -qE '^8(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-centos8-ds.xml"
+          elif [ "${id}" = "ol" ] && echo "${version_id}" | grep -qE '^7(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ol7-ds.xml"
+          elif [ "${id}" = "ol" ] && echo "${version_id}" | grep -qE '^8(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ol8-ds.xml"
+          elif [ "${id}" = "ol" ] && echo "${version_id}" | grep -qE '^9(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ol9-ds.xml"
+          elif [ "${id}" = "rhel" ] && echo "${version_id}" | grep -qE '^7(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-rhel7-ds.xml"
+          elif [ "${id}" = "rhel" ] && echo "${version_id}" | grep -qE '^8(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-rhel8-ds.xml"
+          elif [ "${id}" = "rhel" ] && echo "${version_id}" | grep -qE '^9(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-rhel9-ds.xml"
+          elif [ "${id}" = "sles" ] && echo "${version_id}" | grep -qE '^12(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-sle12-ds.xml"
+          elif [ "${id}" = "sles" ] && echo "${version_id}" | grep -qE '^15(\..*)?$' ; then
+            ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-sle15-ds.xml"
+          else
+            >&2 echo "There is no configuration available for ${id} ${version_id}"
+            exit 1
+          fi
+          # Select the profile to use. The first profile that exists in the ssg is used.
+          for profile in xccdf_org.ssgproject.content_profile_cis_level2_server xccdf_org.ssgproject.content_profile_cis xccdf_org.ssgproject.content_profile_standard; do
+            if oscap info --profiles "${SSG_DIR}/${ssg}" | grep -qF "${profile}:"; then
+              echo "Selected profile: ${profile}"
+              break;
+            fi
+          done
+
+          set +e
+          oscap-docker image "${IMAGE_NAME}" xccdf eval --verbose ERROR --fetch-remote-resources --profile "${profile}" --results "openscap-report.xml" --report "openscap-report.html" "${SSG_DIR}/${ssg}"
+          OSCAP_EXIT_CODE=$?
+          set -e
+
+          case "${OSCAP_EXIT_CODE}" in
+            0)
+              echo "All rules passed"
+            ;;
+            1)
+              >&2 echo "An error occurred during evaluation"
+              exit 2
+            ;;
+            2)
+              echo "There is at least one rule with either fail or unknown result"
+            ;;
+            *)
+              >&2 echo "openscap returned an unexpected exit status of $OSCAP_EXIT_CODE"
+              exit "$OSCAP_EXIT_CODE"
+            ;;
+          esac
+      - name: Convert xml to hdf
+        run: |
+          # shellcheck shell=sh
+          set -eu
+          saf convert xccdf_results2hdf -i "openscap-report.xml" -o openscap-report.hdf
+      - name: Convert hdf to sarif
+        run: |
+          # shellcheck shell=sh
+          set -eu
+          DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 sarif-multitool convert -t Hdf -o openscap-report.sarif openscap-report.hdf.json
+      - name: Upload reports
+        if: success() || failure() # always run even if the previous step fails
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
+        with:
+          name: openscap-reports
+          path: |
+            openscap-report.html
+            openscap-report.xml
+            openscap-report.hdf.json
+            openscap-report.sarif
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@46ed16ded91731b2df79a2893d3aea8e9f03b5c4 # v2
+        # Results are generated only on a success or failure
+        # this is required since GitHub by default won't run the next step
+        # when the previous one has failed. Security checks that do not pass will 'fail'.
+        # An alternative is to add `continue-on-error: true` to the previous step
+        if: success() || failure()
+        with:
+          sarif_file: openscap-report.sarif
