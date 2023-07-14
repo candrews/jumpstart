@@ -9,6 +9,12 @@
   "platformAutomerge": true,
   "regexManagers": [
     {
+      "fileMatch": ["\\.yml$"],
+      "matchStrings": ["SARIF_CONVERTER_VERSION *: *\"(?<currentValue>.+?)\""],
+      "depNameTemplate": "ignis-build/sarif-converter/",
+      "datasourceTemplate": "gitlab-releases"
+    },
+    {
       "description": "Update docker references in build.gradle",
       "fileMatch": ["^build.gradle$"],
       "matchStrings": [
