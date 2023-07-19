@@ -8,7 +8,7 @@ on:  # yamllint disable-line rule:truthy
   - push
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ ( github.ref_name == github.event.repository.default_branch ) && 'latest' || github.sha }}
+  IMAGE_NAME: ghcr.io/${{ github.repository }}:${{ ( github.ref_name == github.event.repository.default_branch ) && 'latest' || format('ci-{0}', github.sha ) }}
 
 jobs:
   build:

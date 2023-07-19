@@ -11,7 +11,7 @@ workflow:
         IMAGE_NAME: "${CI_REGISTRY_IMAGE}:latest"
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
       variables:
-        IMAGE_NAME: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}"
+        IMAGE_NAME: "${CI_REGISTRY_IMAGE}:ci-${CI_COMMIT_SHA}"
 
 codespell:
   stage: lint
