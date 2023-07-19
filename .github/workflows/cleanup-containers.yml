@@ -1,0 +1,30 @@
+---
+name: Cleanup GitHub Container Registry
+permissions: {}
+on:  # yamllint disable-line rule:truthy
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  prune-containers:
+    permissions:
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prune ci-* containers
+        uses: vlaurin/action-ghcr-prune@0a539594d122b915e71c59733a5b115bfaaf5d52 # v0.5.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: ${{ github.repository_owner }}
+          container: ${{ github.event.repository.name }}
+          keep-younger-than: 1
+          prune-tags-regexes: |
+            ^ci-
+      - name: Prune other containers
+        uses: vlaurin/action-ghcr-prune@0a539594d122b915e71c59733a5b115bfaaf5d52 # v0.5.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: ${{ github.repository_owner }}
+          container: ${{ github.event.repository.name }}
+          keep-younger-than: 1
+          keep-last: 5
+          prune-untagged: true
