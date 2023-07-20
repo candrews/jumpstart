@@ -101,6 +101,11 @@ tasks.withType(AbstractArchiveTask) {
 tasks.named("bootBuildImage") {
 	// See: https://paketo.io/docs/howto/java/
 
+	// Disable buildpack's SBOM support
+	// The buildpack doesn't include this project's NPM dependencies and is therefore fatally flawed.
+	// The SBOM can be generated and disseminated using a different mechanism.
+	environment["BP_DISABLE_SBOM"] = "true"
+
 	docker {
 		publishRegistry {
 			username = System.env.DOCKER_USERNAME
