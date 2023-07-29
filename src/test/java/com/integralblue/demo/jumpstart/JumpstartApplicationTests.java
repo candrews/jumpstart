@@ -10,12 +10,12 @@ import com.integralblue.demo.jumpstart.JumpstartApplication;
 
 @SpringBootTest
 /* default */ class JumpstartApplicationTests {
-	@Autowired
-	private JumpstartApplication application;
+    @Autowired
+    private JumpstartApplication application;
 
-	@Test
-	/* default */ void contextLoads() {
-		assertThat(application).isNotNull();
-		// do nothing; this test just ensure that the Spring context loads
-	}
+    @Test
+    /* default */ void contextLoads() {
+        assertThat(application).isNotNull();
+        // do nothing; this test just ensure that the Spring context loads
+    }
 }

@@ -19,28 +19,28 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class FixedUsernamePasswordSecurityConfiguration {
 
-	@Bean
-	@SuppressWarnings("PMD.SignatureDeclareThrowsException")
-	public SecurityFilterChain filterChain(final @NonNull HttpSecurity http) throws Exception {
-		return
-			http
-			.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-				.anyRequest()
-				.authenticated())
-			.formLogin(withDefaults())
-			.httpBasic(withDefaults())
-			.build();
-	}
+    @Bean
+    @SuppressWarnings("PMD.SignatureDeclareThrowsException")
+    public SecurityFilterChain filterChain(final @NonNull HttpSecurity http) throws Exception {
+        return
+            http
+            .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+                .anyRequest()
+                .authenticated())
+            .formLogin(withDefaults())
+            .httpBasic(withDefaults())
+            .build();
+    }
 
-	@Bean
-	public InMemoryUserDetailsManager userDetailsService() {
-		@SuppressWarnings("deprecation")
-		final UserDetails user = User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
-				.roles("USER")
-				.build();
-		return new InMemoryUserDetailsManager(user);
-	}
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+        @SuppressWarnings("deprecation")
+        final UserDetails user = User.withDefaultPasswordEncoder()
+                .username("user")
+                .password("password")
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(user);
+    }
 
 }

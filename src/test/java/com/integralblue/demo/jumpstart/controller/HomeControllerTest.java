@@ -17,26 +17,26 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 /* default */ class HomeControllerTest {
 
-	@Autowired
-	private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
-	@Test
-	@WithMockUser
-	/* default */ void testHomeAuthenticationRequired() throws Exception {
-		mockMvc.perform(
-				get("/")
-				.with(anonymous())
-				.secure(true))
-			.andExpect(status().isUnauthorized());
-	}
+    @Test
+    @WithMockUser
+    /* default */ void testHomeAuthenticationRequired() throws Exception {
+        mockMvc.perform(
+                get("/")
+                .with(anonymous())
+                .secure(true))
+            .andExpect(status().isUnauthorized());
+    }
 
-	@Test
-	@WithMockUser
-	/* default */ void testHome() throws Exception {
-		mockMvc.perform(
-				get("/")
-				.with(user("user"))
-				.secure(true))
-			.andExpect(status().isOk());
-	}
+    @Test
+    @WithMockUser
+    /* default */ void testHome() throws Exception {
+        mockMvc.perform(
+                get("/")
+                .with(user("user"))
+                .secure(true))
+            .andExpect(status().isOk());
+    }
 }
