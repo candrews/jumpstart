@@ -1,9 +1,5 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "react"
-  ],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
@@ -11,13 +7,16 @@
     "plugin:react-hooks/recommended",
     "plugin:anti-trojan-source/recommended"
   ],
+  "plugins": [
+    "@typescript-eslint",
+    "react"
+  ],
+  "rules": {
+    "semi": "warn"
+  },
   "settings": {
     "react": {
       "version": "detect"
     }
-  },
-  "rules": {
-    "semi": "warn"
   }
 }
-
