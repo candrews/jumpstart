@@ -112,7 +112,7 @@ The configuration file at [`frontend/cypress.config.ts`](frontend/cypress.config
 #### Running the Lighthouse Tests
 
 There are a few ways to run cypress tests locally:
-* Run the application, for example, by running `./gradlew bootTestRun`,then, from within the [`frontend`](frontend) directory, run `./npm run lhci autorun --collect.startServerCommand=""`
+* Run the application, for example, by running `./gradlew bootTestRun`,then, from within the [`frontend`](frontend) directory, run `./npx lhci autorun --collect.startServerCommand=""`
 * From within the [`frontend`](frontend) directory, run `./npm run lhci autorun` This command will start the application for you.
 * Run the application's tests with `./gradle test`. One of the tests run is [`LighthouseTest`](../src/test/java/com/integralblue/demo/jumpstart/LighthouseTest.java) which will run the Lighthouse tests. This approach is used by [`.gitlab-ci.yml`](.gitlab-ci.yml) when running continuous integration.
 
