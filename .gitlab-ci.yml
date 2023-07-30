@@ -26,7 +26,7 @@ codespell:
 
 yamllint:
   stage: lint
-  image: registry.gitlab.com/pipeline-components/yamllint:0.27.0@sha256:25084fcff4df47af3d3bd56c48b69577a3680da14f2bc0f3ad4631a79e26c164
+  image: registry.gitlab.com/pipeline-components/yamllint:0.28.0@sha256:2bda65c6d929f287d1107c35de76ce0b750068de659d61de463ffc2e35586137
   script:
     - |
       # shellcheck shell=sh
