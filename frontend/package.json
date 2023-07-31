@@ -1,14 +1,19 @@
 {
   "name": "jumpstart",
-  "version": "0.1.0",
   "private": true,
   "proxy": "https://localhost:8443",
-  "scripts": {
-    "start": "vite",
-    "build": "tsc && vite build",
-    "test": "vitest run",
-    "cypress-open": "cypress open",
-    "cypress-run": "rm -rf ../build/reports/cypress || true && cypress run"
+  "version": "0.1.0",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
     "@date-io/core": "2.17.0",
@@ -52,16 +57,11 @@
     "vite": "4.4.7",
     "vitest": "0.33.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "scripts": {
+    "build": "tsc && vite build",
+    "cypress-open": "cypress open",
+    "cypress-run": "rm -rf ../build/reports/cypress || true && cypress run",
+    "start": "vite",
+    "test": "vitest run"
   }
 }
