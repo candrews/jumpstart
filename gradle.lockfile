@@ -108,7 +108,6 @@ org.osgi:org.osgi.service.prefs:1.1.2=sonarlintCoreClasspath
 org.osgi:osgi.annotation:8.0.1=sonarlintCoreClasspath
 org.ow2.asm:asm-commons:9.5=jacocoAnt
 org.ow2.asm:asm-tree:9.5=jacocoAnt
-org.ow2.asm:asm:9.0=sonarlintCoreClasspath
 org.ow2.asm:asm:9.3=testCompileClasspath,testRuntimeClasspath
 org.ow2.asm:asm:9.5=jacocoAnt
 org.postgresql:postgresql:42.6.0=productionRuntimeClasspath,runtimeClasspath,testRuntimeClasspath
