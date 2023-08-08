@@ -32,11 +32,6 @@ tasks.compileJava {
 	options.release = 17
 }
 
-dependencyManagement {
-	// workaround for https://github.com/spring-gradle-plugins/dependency-management-plugin/issues/365
-	applyMavenExclusions(false)
-}
-
 // Enable dependency locking: https://docs.gradle.org/current/userguide/dependency_locking.html
 // To achieve reproducible builds, it is necessary to lock versions of dependencies and transitive dependencies such that a build with the same inputs will always resolve the same module versions.
 // This is called dependency locking.
