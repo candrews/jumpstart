@@ -97,7 +97,7 @@ build and test:
     DOCKER_TLS_CERTDIR: ""
     DOCKER_USERNAME: "${CI_REGISTRY_USER}"
     DOCKER_PASSWORD: "${CI_REGISTRY_PASSWORD}"
-  image: eclipse-temurin:17.0.8_7-jdk@sha256:e80ffa1b9edfbc55ed2bc0550ace9593e466bbdcbdf7d97e99450401037f10b9
+  image: eclipse-temurin:17.0.8_7-jdk@sha256:9b0a0bb921daabc6187974bdb97223e258454a956b854023a9107af2096a31b6
   before_script:
     - |
       # shellcheck shell=sh
