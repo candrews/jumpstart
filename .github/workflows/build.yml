@@ -108,7 +108,7 @@ jobs:
         run: |
           # shellcheck shell=sh
           set -eu
-          apk add curl docker openscap-docker npm gcompat unzip
+          apk add curl docker jq openscap-docker npm gcompat unzip
           npm install -g "@microsoft/sarif-multitool@${MICROSOFT_SARIF_MULTITOOL_VERSION}"
           npm install -g "@mitre/saf@${MITRE_SAF_VERSION}"
           mkdir -p "${SSG_DIR}"
@@ -208,6 +208,13 @@ jobs:
           # shellcheck shell=sh
           set -eu
           DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 sarif-multitool convert -t Hdf -o openscap-report.sarif openscap-report.hdf.json
+      - name: filter results that shouldn't be GitHub security alerts
+        # Hopefully GitHub adds support for SARIF's "kind" eliminating the need for this step: https://github.com/orgs/community/discussions/65477
+        run: |
+          # shellcheck shell=sh
+          set -eu
+          jq 'del(.runs[].results[] | select(.kind == "notApplicable" or .kind == "pass" or .kind == "informational" ))' openscap-report.sarif > filtered.sarif
+          mv filtered.sarif openscap-report.sarif
       - name: Upload reports
         if: success() || failure() # always run even if the previous step fails
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3
