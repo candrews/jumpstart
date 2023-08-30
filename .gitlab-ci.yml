@@ -128,7 +128,7 @@ build and test:
 scap:
   stage: test
   image:
-    name: alpine:3.18.2@sha256:82d1e9d7ed48a7523bdebc18cf6290bdb97b82302a8a9c27d4fe885949ea94d1  # alpine official image
+    name: alpine:3.18.3@sha256:7144f7bab3d4c2648d7e59409f15ec52a18006a128c733fcff20d3a4a54ba44a  # alpine official image
     entrypoint: [""]
   services:
     - name: docker:24.0.4-dind@sha256:594b3a4dc012e5160fed2a5c47a36ac5af6fa25f0c155bd9cff23d4f8c6fec16
