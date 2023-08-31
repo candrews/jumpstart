@@ -11,7 +11,7 @@
     {
       "fileMatch": ["\\.yml$"],
       "matchStrings": ["SARIF_CONVERTER_VERSION *: *\"(?<currentValue>.+?)\""],
-      "depNameTemplate": "ignis-build/sarif-converter/",
+      "depNameTemplate": "ignis-build/sarif-converter",
       "datasourceTemplate": "gitlab-releases"
     },
     {
