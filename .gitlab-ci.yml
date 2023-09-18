@@ -158,7 +158,7 @@ scap:
       ssgdir="ssg"
       curl "https://github.com/ComplianceAsCode/content/releases/download/v${SCAP_SECURITY_GUIDE_VERSION}/scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}.zip" -Lso "${ssgdir}/ssg.zip"
       unzip "${ssgdir}/ssg.zip" -d "${ssgdir}"
-      curl "https://gitlab.com/ignis-build/sarif-converter/-/releases/v${SARIF_CONVERTER_VERSION}/downloads/bin/sarif-converter-linux" -Lso sarif-converter
+      curl "https://gitlab.com/ignis-build/sarif-converter/-/releases/${SARIF_CONVERTER_VERSION}/downloads/bin/sarif-converter-linux" -Lso sarif-converter
       chmod +x sarif-converter
       printf "\e[0Ksection_end:%s:prerequisites\r\e[0K\n" "$(date +%s)"
 
