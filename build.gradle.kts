@@ -46,6 +46,10 @@ lombok {
     version = "1.18.30"
 }
 
+jacoco {
+    toolVersion = "0.8.9"
+}
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
