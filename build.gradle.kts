@@ -47,7 +47,7 @@ lombok {
 }
 
 jacoco {
-    toolVersion = "0.8.9"
+    toolVersion = "0.8.10"
 }
 
 dependencies {
