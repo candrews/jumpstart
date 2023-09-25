@@ -42,6 +42,10 @@ dependencyLocking {
 	lockMode = LockMode.STRICT
 }
 
+lombok {
+    version = "1.18.28"
+}
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
