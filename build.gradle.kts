@@ -43,7 +43,7 @@ dependencyLocking {
 }
 
 lombok {
-    version = "1.18.28"
+    version = "1.18.30"
 }
 
 dependencies {
