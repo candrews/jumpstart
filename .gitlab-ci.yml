@@ -97,7 +97,7 @@ build and test:
     DOCKER_TLS_CERTDIR: ""
     DOCKER_USERNAME: "${CI_REGISTRY_USER}"
     DOCKER_PASSWORD: "${CI_REGISTRY_PASSWORD}"
-  image: bellsoft/liberica-openjdk-debian:17.0.8.1-1@sha256:d73fb30258a8a4b327710a5c37884cf297bed5bffd4580de6ca8f66a2b0d779f
+  image: bellsoft/liberica-openjdk-debian:17.0.8.1-1@sha256:260dc78f3c25a026acc68bc455585611850d3bf52791a5f17183b879c12d55fa
   before_script:
     - |
       # shellcheck shell=sh
