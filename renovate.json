@@ -27,8 +27,8 @@
       "datasourceTemplate": "npm"
     },
     {
-      "description": "Update docker references in build.gradle",
-      "fileMatch": ["^build.gradle$"],
+      "description": "Update docker references in build.gradle.kts",
+      "fileMatch": ["^build.gradle.kts$"],
       "matchStrings": [
         "\"(?<depName>(?:gcr\\.io|docker\\.io)\\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?\""
       ],
@@ -45,7 +45,7 @@
       "versioningTemplate": "docker"
     },
     {
-      "fileMatch": ["^build.gradle$"],
+      "fileMatch": ["^build.gradle.kts$"],
       "matchStrings": ["nodeVersion *= *\"(?<currentValue>.+?)\";?\n?"],
       "depNameTemplate": "node",
       "datasourceTemplate": "docker"
