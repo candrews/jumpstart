@@ -46,7 +46,7 @@
     },
     {
       "fileMatch": ["^build.gradle$"],
-      "matchStrings": ["nodeVersion *= *'(?<currentValue>.+?)';?\n?"],
+      "matchStrings": ["nodeVersion *= *\"(?<currentValue>.+?)\";?\n?"],
       "depNameTemplate": "node",
       "datasourceTemplate": "docker"
     }
