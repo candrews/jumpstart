@@ -9,7 +9,7 @@ The demonstrated application itself is a simple "Hello World" application. There
 ## Included Technologies
 
 * Backend
-  * Java 17
+  * Java 21
   * [Spring Boot](https://spring.io/projects/spring-boot)
   * [Project Lombok](https://projectlombok.org)
   * [Gradle](https://gradle.org/)
@@ -51,7 +51,7 @@ The demonstrated application itself is a simple "Hello World" application. There
 And now go do the real work :-)
 
 ## Developer Setup
-This project requires Java 17 (or later).
+This project requires Java 21 (or later).
 Import this Gradle project using your IDE of choice.
 Or, if you don't want to use an IDE, you can run the project from the command line: `./gradlew bootTestRun` The site will be accessible at [https://localhost:8443](https://localhost:8443)
 
@@ -80,7 +80,7 @@ The Project Lombok Eclipse integration must be setup. See the Eclipse instructio
    1. Search "PMDPlugin" and install from marketplace
    1. Search "CheckStyle-IDEA" and install from marketplace
 1. Go to Project Structure
-   1. Change to Java 17 (or later)
+   1. Change to Java 21 (or later)
 1. Go to Advanced Settings
    1. Set "Allow auto-make to start even if deployed application is currently running" (See [https://stackoverflow.com/a/68786501](https://stackoverflow.com/a/68786501) for details)
 1. Turn on Annotation Processor
