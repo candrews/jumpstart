@@ -152,13 +152,10 @@ scap:
       set -eu
       printf "\e[0Ksection_start:%s:prerequisites[collapsed=true]\r\e[0KInstalling prerequisites...\n" "$(date +%s)"
       apk add curl docker openscap-docker npm gcompat unzip
-
-      # Install git to workaround https://github.com/sinonjs/sinon/issues/2557
-      # Remove when sinon 16.1.2 (or later) is released, or when using MITRE_SAF_VERSION that includes https://github.com/mitre/saf/pull/1919
-      apk add git
-
       npm install -g "@microsoft/sarif-multitool@${MICROSOFT_SARIF_MULTITOOL_VERSION}"
-      npm install -g "@mitre/saf@${MITRE_SAF_VERSION}"
+      # Specify the sinon version to use.
+      # Remove sinon from this line when sinon 16.1.2 (or later) is released, or when using MITRE_SAF_VERSION that includes https://github.com/mitre/saf/pull/1919
+      npm install -g sinon@16.1.0 "@mitre/saf@${MITRE_SAF_VERSION}"
       mkdir ssg
       ssgdir="ssg"
       curl "https://github.com/ComplianceAsCode/content/releases/download/v${SCAP_SECURITY_GUIDE_VERSION}/scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}.zip" -Lso "${ssgdir}/ssg.zip"
