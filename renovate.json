@@ -36,8 +36,8 @@
       "versioningTemplate": "docker"
     },
     {
-      "description": "Update docker references in Java test files",
-      "fileMatch": ["src/test/.*\\.java"],
+      "description": "Update docker references in Java files",
+      "fileMatch": ["\\.java$"],
       "matchStrings": [
         "\"(?<depName>(?:gcr\\.io|docker\\.io)\\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?\""
       ],
