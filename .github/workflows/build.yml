@@ -17,7 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
-      - uses: codespell-project/actions-codespell@master
+      - uses: DavidAnson/markdownlint-cli2-action@ed4dec634fd2ef689c7061d5647371d8248064f1 # v13
+        with:
+          globs: |
+            **/*.md
+            #**/node_modules
+            #**/.gradle
+            #**/.git
       - uses: ibiqlik/action-yamllint@2576378a8e339169678f9939646ee3ee325e845c  # v3
         with:
           strict: true
