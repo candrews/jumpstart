@@ -24,6 +24,16 @@ codespell:
     - codespell --version
     - codespell
 
+markdownlint:
+  stage: lint
+  image:
+    name: davidanson/markdownlint-cli2:v0.10.0@sha256:8a8565f0ed89bdea80fe91b56740e5f4a80394b332d8b7eb29a43405c0fa48ff
+    entrypoint: [""]
+  script:
+    - |
+      # shellcheck shell=sh
+    - markdownlint-cli2 "**/*.md" "#**/node_modules" "#**/.gradle" "#**/.git"
+
 yamllint:
   stage: lint
   image: registry.gitlab.com/pipeline-components/yamllint:0.28.2@sha256:6cfe478506f364d7ea2387ca3a24f60271eb5d55aba4bf5ab8ea0b3ff41f8f38
