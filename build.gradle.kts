@@ -3,7 +3,7 @@ import com.github.gradle.node.npm.task.NpxTask
 
 plugins {
 	id("io.spring.dependency-management") version "1.1.4"
-	id("org.springframework.boot") version "3.1.5"
+	id("org.springframework.boot") version "3.2.0"
 	id("com.gorylenko.gradle-git-properties") version "2.4.1"
 	id("name.remal.sonarlint") version "3.3.16"
 	//id("nebula.lint") version "18.1.0" // this plugin doesn't (currently?) support Gradle kotlin: https://github.com/nebula-plugins/gradle-lint-plugin/issues/166
@@ -63,8 +63,7 @@ dependencies {
 	annotationProcessor("org.springframework:spring-context-indexer")
 	annotationProcessor("org.hibernate.validator:hibernate-validator-annotation-processor")
 
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	testImplementation("org.springframework.boot:spring-boot-devtools")
+	testAndDevelopmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
