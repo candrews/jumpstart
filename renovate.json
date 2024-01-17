@@ -4,6 +4,18 @@
     "helpers:pinGitHubActionDigests",
     "config:base"
   ],
+  "ignorePresets": [
+    ":ignoreModulesAndTests"
+  ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/examples/**",
+    "**/__tests__/**",
+    "**/tests/**",
+    "**/__fixtures__/**"
+  ],
   "forkProcessing": "enabled",
   "pinDigests": true,
   "platformAutomerge": true,
