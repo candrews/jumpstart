@@ -45,7 +45,7 @@ yamllint:
 shellcheck:
   # See: https://candrews.integralblue.com/2022/02/shellcheck-scripts-embedded-in-gitlab-ci-yaml/
   stage: lint
-  image: alpine:3.19.0@sha256:51b67269f354137895d43f3b3d810bfacd3945438e94dc5ac55fdac340352f48
+  image: alpine:3.19.1@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b
   before_script:
     - |
       # shellcheck shell=sh
@@ -138,7 +138,7 @@ build and test:
 scap:
   stage: test
   image:
-    name: alpine:3.19.0@sha256:51b67269f354137895d43f3b3d810bfacd3945438e94dc5ac55fdac340352f48  # alpine official image
+    name: alpine:3.19.1@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b  # alpine official image
     entrypoint: [""]
   services:
     - name: docker:25.0.1-dind@sha256:7986efdd91d8049771bb935f27c53e4f040494d3274c5e377e54ca1337151c29
