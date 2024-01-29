@@ -50,7 +50,7 @@ jobs:
           distribution: "liberica"
           cache: "gradle"
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@4a8703fa348fe99fdb9d2ac233732f7dccea5437 # v3
+        uses: gradle/gradle-build-action@d4bd442194a6478e8ac205108cae29e76bf9b787 # v3
       - name: Build with Gradle
         run: |
           # shellcheck shell=sh
