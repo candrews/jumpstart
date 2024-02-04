@@ -60,7 +60,6 @@ dependencies {
 	implementation("org.liquibase:liquibase-core")
 
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-	annotationProcessor("org.springframework:spring-context-indexer")
 	annotationProcessor("org.hibernate.validator:hibernate-validator-annotation-processor")
 
 	testAndDevelopmentOnly("org.springframework.boot:spring-boot-devtools")
