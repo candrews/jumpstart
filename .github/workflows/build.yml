@@ -79,7 +79,7 @@ jobs:
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       - name: Checkov GitHub Action
-        uses: bridgecrewio/checkov-action@259301d4cd9dce0a34705b72906c3ad981406bcd # v12
+        uses: bridgecrewio/checkov-action@94200023b0c8b45fdd614fe40f20d6d49915bff0 # v12
         with:
           directory: .
           # This will add both a CLI output to the console and create a results.sarif file
