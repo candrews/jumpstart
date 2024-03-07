@@ -60,7 +60,7 @@ shellcheck:
       git ls-files --exclude='*.gitlab-ci.yml' --ignored -c | while IFS= read -r file; do
         yq eval '.[] | select(tag=="!!map") | (.before_script,.script,.after_script) | select(. != null ) | path | ".[\"" + join("\"].[\"") + "\"]"' "${file}" | while IFS= read -r selector; do
           script=$(yq eval "${selector} | join(\"${newline}\")" "${file}")
-          if ! printf '%s' "${script}" | shellcheck -; then
+          if ! printf '%s' "${script}" | shellcheck -x -; then
               >&2 printf "\nError in %s in the script specified in %s:\n%s\n" "${file}" "${selector}" "${script}"
               exit 1
           fi
