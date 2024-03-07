@@ -54,7 +54,7 @@ shellcheck:
   script:
     - |
       # shellcheck shell=sh
-      git ls-files --exclude='*.sh' --ignored -c -z | xargs -0r shellcheck -x
+      git ls-files --exclude='*.sh' --ignored -c -z | xargs -0r shellcheck -P SCRIPTDIR -x
       newline="$(printf '\nq')"
       newline=${newline%q}
       git ls-files --exclude='*.gitlab-ci.yml' --ignored -c | while IFS= read -r file; do
