@@ -58,12 +58,17 @@ shellcheck:
       newline="$(printf '\nq')"
       newline=${newline%q}
       git ls-files --exclude='*.gitlab-ci.yml' --ignored -c | while IFS= read -r file; do
-        yq eval '.[] | select(tag=="!!map") | (.before_script,.script,.after_script) | select(. != null ) | path | ".[\"" + join("\"].[\"") + "\"]"' "${file}" | while IFS= read -r selector; do
-          script=$(yq eval "${selector} | join(\"${newline}\")" "${file}")
-          if ! printf '%s' "${script}" | shellcheck -x -; then
+        documentCount=$(yq eval-all '[.] | length' "${file}")
+        documentIndex=-1
+        while [ "$documentIndex" -lt "$documentCount" ]; do
+          true $((documentIndex=documentIndex+1))
+          yq eval 'select(documentIndex == '${documentIndex}') | .[] | select(tag=="!!map") | (.before_script,.script,.after_script) | select(. != null ) | path | "select(documentIndex == '${documentIndex}') | .[\"" + join("\"].[\"") + "\"]"' "${file}" | while IFS= read -r selector; do
+            script=$(yq eval "${selector} | join(\"${newline}\")" "${file}")
+            if ! printf '%s' "${script}" | shellcheck -x -; then
               >&2 printf "\nError in %s in the script specified in %s:\n%s\n" "${file}" "${selector}" "${script}"
               exit 1
-          fi
+            fi
+          done
         done
       done
 
