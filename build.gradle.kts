@@ -126,7 +126,7 @@ tasks.bootBuildImage {
 		runImage = "docker.io/paketobuildpacks/run-jammy-tiny:0.2.30@sha256:d436a55dfbe77ae55fabbe1865a2ca4834c3a9fd0422304fcd75599b9802135b"
 		buildpacks = listOf(
 			"gcr.io/paketo-buildpacks/ca-certificates:3.6.8@sha256:c4c0cd8c8b9a3bafee9f57a8a93a097ecfc795f7751060619f83858ce8628a96",
-			"gcr.io/paketo-buildpacks/bellsoft-liberica:10.5.3@sha256:370d06fe2b9388a0dbd583fac32e642eeec9604fb64a3c278c6c673349005034",
+			"gcr.io/paketo-buildpacks/bellsoft-liberica:10.5.4@sha256:adcc7f94cd35105173c600b4b1f8216a0430657fe08c57cc31c9aff83270a848",
 			"gcr.io/paketo-buildpacks/syft:1.45.1@sha256:2e5031c6ee1a30dd1ecfc5dc0b232326dcb81e4b198d6b4eabdceda562affe68",
 			"gcr.io/paketo-buildpacks/executable-jar:6.8.4@sha256:e113d7b4d2b6452d221b975f8fba1c7186eb000ac09a90510f973e284ffcd0a7",
 			"gcr.io/paketo-buildpacks/dist-zip:5.6.9@sha256:1d4da65878bd1ed858136ba98272d5c3f8253135a2983e87afc4a08774216ea1",
