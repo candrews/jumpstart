@@ -19,7 +19,7 @@
     "@mui/material": "5.15.15",
     "@types/js-cookie": "3.0.6",
     "@types/node": "20.12.5",
-    "@types/react": "18.2.74",
+    "@types/react": "18.2.75",
     "@types/react-dom": "18.2.24",
     "@types/react-router-dom": "5.3.3",
     "js-cookie": "3.0.5",
