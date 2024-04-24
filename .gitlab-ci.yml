@@ -36,7 +36,7 @@ markdownlint:
 
 yamllint:
   stage: lint
-  image: registry.gitlab.com/pipeline-components/yamllint:0.31.0@sha256:f1392005bda4465d0300340d2ccce26aeca6c3fc01f0a518c23499bc26a50a54
+  image: registry.gitlab.com/pipeline-components/yamllint:0.31.1@sha256:88b5f752ec622f756ff8148a092a958bd21719ae1b7a24ceafd35668c6deb3e3
   script:
     - |
       # shellcheck shell=sh
