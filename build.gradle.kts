@@ -96,7 +96,7 @@ gradleLint {
 */
 
 sonarLint {
-	sonarProperty("sonar.nodejs.executable", project.provider { "${node.computedNodeDir.get()}/bin/node"}) // configure Node.js executable path via `sonar.nodejs.executable` Sonar property
+	sonarProperty("sonar.nodejs.executable", project.provider { "${node.resolvedNodeDir})/bin/node"}) // configure Node.js executable path via `sonar.nodejs.executable` Sonar property
 }
 
 // reproducible builds
@@ -188,7 +188,7 @@ node {
 
 tasks.register("nodeDir") {
 	dependsOn(tasks.nodeSetup)
-	println(node.computedNodeDir.get())
+	println(node.resolvedNodeDir)
 }
 
 val npm_run_build by tasks.registering(NpmTask::class) {
