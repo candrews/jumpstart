@@ -140,12 +140,12 @@ jobs:
           set -eu
           # extract /etc/os-release
           container_id=$(docker create "${IMAGE_NAME}")
-          if ! docker export "${container_id}" | tar -tvf - | grep '\setc/os-release$' > /dev/null 2>&1 ; then
+          if ! docker export "${container_id}" | tar -tvf - | grep -E '\setc/os-release( ->.*)?$' > /dev/null 2>&1 ; then
             >&2 echo "The operating system used by ${IMAGE_NAME} could not be detected."
             >&2 echo "Images that are not based on an operating system (such as distroless images) cannot be scanned by SCAP."
             exit 1
           fi
-          docker cp "$container_id:/etc/os-release" .
+          docker cp -L "$container_id:/etc/os-release" .
           docker rm "$container_id"
           unset container_id
           # determine which ssg to use based on /etc/os-release
