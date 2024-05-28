@@ -96,7 +96,9 @@ gradleLint {
 */
 
 sonarLint {
-	sonarProperty("sonar.nodejs.executable", project.provider { "${node.resolvedNodeDir})/bin/node"}) // configure Node.js executable path via `sonar.nodejs.executable` Sonar property
+	nodeJs {
+		nodeJsExecutable = project.provider{ file("${node.resolvedNodeDir.get()}/bin/node") }
+	}
 }
 
 // reproducible builds
