@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      "^/(api)": {
+      "^/(api|actuator)/": {
         target: "https://localhost:8443",
       },
     },
