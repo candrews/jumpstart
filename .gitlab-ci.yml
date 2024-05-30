@@ -99,7 +99,7 @@ build and test:
   # the build job actually builds and tests
   stage: build
   services:
-    - name: docker:26.1.3-dind@sha256:a811114bcd41954bc9b6577469ce7e648ee600c864e815e535aac79e50439352
+    - name: docker:26.1.3-dind@sha256:e5f2097b7b2f7ca0cf53ed1bedb4e2f70b4e061e5937ca56b4b7b7e3255ae15c
       alias: docker
       # explicitly disable tls to avoid docker startup interruption as of docker 20.10.9
       # there is so security concern because docker is only accessed from within the same system;
@@ -146,7 +146,7 @@ scap:
     name: alpine:3.20.0@sha256:77726ef6b57ddf65bb551896826ec38bc3e53f75cdde31354fbffb4f25238ebd  # alpine official image
     entrypoint: [""]
   services:
-    - name: docker:26.1.3-dind@sha256:a811114bcd41954bc9b6577469ce7e648ee600c864e815e535aac79e50439352
+    - name: docker:26.1.3-dind@sha256:e5f2097b7b2f7ca0cf53ed1bedb4e2f70b4e061e5937ca56b4b7b7e3255ae15c
       alias: docker
       # explicitly disable tls to avoid docker startup interruption as of docker 20.10.9
       # there is so security concern because docker is only accessed from within the same system;
