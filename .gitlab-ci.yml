@@ -290,7 +290,7 @@ convert jacaco to cobertura coverage:
   # gitlab doesn't support jacoco format: https://gitlab.com/gitlab-org/gitlab/-/issues/227345
   # so convert from jacoco to cobertura: https://docs.gitlab.com/ee/user/project/merge_requests/test_coverage_visualization.html
   stage: test
-  image: haynes/jacoco2cobertura:1.0.10@sha256:df1318ce6863205d50db0174fdeaa076e7eb57e7067f960b8aaee98ae8f648b2
+  image: haynes/jacoco2cobertura:1.0.10@sha256:c595e663d095221c2ec72545d1e372b90bea35798a856127ac39aee271bc6420
   script:
     - |
       # shellcheck shell=sh
