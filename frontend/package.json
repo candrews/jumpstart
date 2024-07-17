@@ -28,7 +28,7 @@
     "prop-types": "15.8.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router-dom": "6.25.0"
+    "react-router-dom": "6.25.1"
   },
   "devDependencies": {
     "@lhci/cli": "0.14.0",
