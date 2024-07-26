@@ -49,7 +49,7 @@
     "nock": "13.5.4",
     "puppeteer": "22.13.1",
     "typescript": "5.5.4",
-    "vite": "5.3.4",
+    "vite": "5.3.5",
     "vitest": "2.0.4"
   },
   "browserslist": {
