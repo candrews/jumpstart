@@ -61,12 +61,12 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
       - name: upload build reports
         if: success() || failure() # always run even if the previous step fails
-        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
         with:
           name: build-reports
           path: build/reports/
       - name: upload build jar
-        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
         with:
           name: jar
           path: build/libs/jumpstart.jar
@@ -230,7 +230,7 @@ jobs:
           mv filtered.sarif openscap-report.sarif
       - name: Upload reports
         if: success() || failure() # always run even if the previous step fails
-        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
         with:
           name: openscap-reports
           path: |
