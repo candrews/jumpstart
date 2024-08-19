@@ -16,7 +16,7 @@ workflow:
 codespell:
   stage: lint
   image:
-    name: ghcr.io/codespell-project/actions-codespell/stable:v2@sha256:3728259d3c5a08ff68bdfa1edbdd92b18523e05961948fc99d41d2c2db166ab0
+    name: ghcr.io/codespell-project/actions-codespell/stable:v2@sha256:a6b75d284d68634af85b78df620f4c85baa987d83047789fde4bbeec1ce3fa23
     entrypoint: [""]
   script:
     - |
