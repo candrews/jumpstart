@@ -35,10 +35,10 @@ jobs:
           git ls-files --exclude='*.sh' --ignored -c -z | xargs -0r shellcheck -P SCRIPTDIR -x
           git ls-files --exclude='.github/**/*.yml' --ignored -c | while IFS= read -r file; do
            yq eval '.[] | select(tag=="!!map").[].steps.[].run | select(. != null ) | path | ".[\"" + join("\"].[\"") + "\"]"' "${file}" | while IFS= read -r selector; do
-              set -e
+              set +e
               script=$(yq eval "${selector}" "${file}")
               status=$?
-              set +e
+              set -e
               if [ $status -ne 0 ]; then
                 >&2 printf "\nError getting the contents of the selector %s in the file %s:\n\nThe YAML may be malformed." "${selector}" "${file}"
                 exit 1
