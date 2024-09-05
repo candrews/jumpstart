@@ -63,10 +63,10 @@ shellcheck:
         while [ "$documentIndex" -lt "$documentCount" ]; do
           true $((documentIndex=documentIndex+1))
           yq eval 'select(documentIndex == '${documentIndex}') | .[] | select(tag=="!!map") | (.before_script,.script,.after_script) | select(. != null ) | path | "select(documentIndex == '${documentIndex}') | .[\"" + join("\"].[\"") + "\"]"' "${file}" | while IFS= read -r selector; do
-            set -e
+            set +e
             script=$(yq eval "${selector} | join(\"${newline}\")" "${file}")
             status=$?
-            set +e
+            set -e
             if [ $status -ne 0 ]; then
               >&2 printf "\nError getting the contents of the selector %s in the file %s:\n\nThe YAML may be malformed." "${selector}" "${file}"
               exit 1
