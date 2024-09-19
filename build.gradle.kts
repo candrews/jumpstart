@@ -3,7 +3,7 @@ import com.github.gradle.node.npm.task.NpxTask
 
 plugins {
 	id("io.spring.dependency-management") version "1.1.6"
-	id("org.springframework.boot") version "3.3.3"
+	id("org.springframework.boot") version "3.3.4"
 	id("com.gorylenko.gradle-git-properties") version "2.4.2"
 	id("name.remal.sonarlint") version "4.1.1"
 	//id("nebula.lint") version "18.1.0" // this plugin doesn't (currently?) support Gradle kotlin: https://github.com/nebula-plugins/gradle-lint-plugin/issues/166
