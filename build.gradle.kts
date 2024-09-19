@@ -132,7 +132,7 @@ tasks.bootBuildImage {
 			"gcr.io/paketo-buildpacks/syft:2.0.0@sha256:3bdb274e5ca743887a2d4340ae96257deb32c82fc827591faa35e9b3165fb69a",
 			"gcr.io/paketo-buildpacks/executable-jar:6.11.2@sha256:24c1baabf848ea34dbea7af26e553d60b9c12f480db5b812c6e61054777cc62a",
 			"gcr.io/paketo-buildpacks/dist-zip:5.8.3@sha256:c58540e507aafd98021510ab92fc779c205bef28f720a95f11b3dafa395ec0ea",
-			"gcr.io/paketo-buildpacks/spring-boot:5.31.1@sha256:e2049ba74a07d970121566c48a0323fd3a0265d7dbd7ae7bc0d89f0f1b15ae52",
+			"gcr.io/paketo-buildpacks/spring-boot:5.31.2@sha256:bf8bb241b78825b01178233c75943c5db5a6bfcd9822413b87030edcc81c6dd9",
 		)
 	}
 }
