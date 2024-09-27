@@ -8,7 +8,7 @@ plugins {
 	id("name.remal.sonarlint") version "4.1.1"
 	//id("nebula.lint") version "18.1.0" // this plugin doesn't (currently?) support Gradle kotlin: https://github.com/nebula-plugins/gradle-lint-plugin/issues/166
 	id("nu.studer.credentials") version "3.0"
-	id("com.github.node-gradle.node") version "7.0.2"
+	id("com.github.node-gradle.node") version "7.1.0"
 	id("io.freefair.lombok") version "8.10"
 	id("java")
 	id("jacoco")
