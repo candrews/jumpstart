@@ -29,6 +29,12 @@
     },
     {
       "fileMatch": ["\\.yml$"],
+      "matchStrings": ["SCAP_SECURITY_GUIDE_VERSION *: *\"(?<currentValue>.+?)\""],
+      "depNameTemplate": "ComplianceAsCode/content",
+      "datasourceTemplate": "gitlab-releases"
+    },
+    {
+      "fileMatch": ["\\.yml$"],
       "matchStrings": ["MICROSOFT_SARIF_MULTITOOL_VERSION *: *\"(?<currentValue>.+?)\""],
       "depNameTemplate": "@microsoft/sarif-multitool",
       "datasourceTemplate": "npm"
