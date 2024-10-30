@@ -15,7 +15,7 @@ plugins {
 	id("eclipse")
 }
 
-val nodeVersion = "22.10.0"
+val nodeVersion = "22.11.0"
 
 // Remove when using Spring Boot 3.2 or later, as Spring Boot 3.2 will use snakeyaml 2.0: https://github.com/spring-projects/spring-boot/issues/35982
 // snakeyaml 2.0 addresses CVE-2022-1471
