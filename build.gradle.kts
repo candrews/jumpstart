@@ -95,6 +95,14 @@ gradleLint {
 }
 */
 
+tasks.sonarlintMain {
+	dependsOn(tasks.nodeSetup)
+}
+
+tasks.sonarlintTest {
+	dependsOn(tasks.nodeSetup)
+}
+
 sonarLint {
 	nodeJs {
 		nodeJsExecutable = project.provider{ file("${node.resolvedNodeDir.get()}/bin/node") }
