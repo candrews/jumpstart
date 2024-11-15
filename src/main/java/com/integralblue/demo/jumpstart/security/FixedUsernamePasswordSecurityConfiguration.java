@@ -32,6 +32,7 @@ public class FixedUsernamePasswordSecurityConfiguration {
 			.build();
 	}
 
+	@SuppressWarnings("java:S6437") /// These credentials are only for testing and should be hardcoded
 	@Bean
 	public InMemoryUserDetailsManager userDetailsService() {
 		@SuppressWarnings("deprecation")
