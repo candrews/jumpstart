@@ -30,7 +30,7 @@
       ],
       "depNameTemplate": "ignis-build/sarif-converter",
       "extractVersionTemplate": "^v?(?<version>.*)$",
-      "datasourceTemplate": "github-releases"
+      "datasourceTemplate": "gitlab-releases"
     },
     {
       "customType": "regex",
