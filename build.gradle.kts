@@ -68,7 +68,7 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.mockito:mockito-junit-jupiter")
 	runtimeOnly("org.postgresql:postgresql")
-	runtimeOnly("net.lbruun.springboot:preliquibase-spring-boot-starter:1.5.1") // necessary to create the db schema before liquibase runs so liquibase can use the created schema
+	runtimeOnly("net.lbruun.springboot:preliquibase-spring-boot-starter:1.6.0") // necessary to create the db schema before liquibase runs so liquibase can use the created schema
 	testImplementation("org.testcontainers:testcontainers")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:postgresql")
