@@ -184,7 +184,7 @@ tasks.jacocoTestCoverageVerification {
 	}
 }
 
-val generatedFrontendResources = "${layout.buildDirectory}/generated-resources"
+val generatedFrontendResources = "${layout.buildDirectory.get().asFile.path}/generated-resources"
 val frontend = "$projectDir/frontend"
 
 val testsExecutedMarkerName = "${projectDir}/.tests.executed"
