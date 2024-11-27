@@ -17,10 +17,6 @@ plugins {
 
 val nodeVersion = "22.11.0"
 
-// Remove when using Spring Boot 3.2 or later, as Spring Boot 3.2 will use snakeyaml 2.0: https://github.com/spring-projects/spring-boot/issues/35982
-// snakeyaml 2.0 addresses CVE-2022-1471
-ext["snakeyaml.version"] = "2.0"
-
 group = "com.integralblue.demo"
 version = "0.0.1-SNAPSHOT"
 
