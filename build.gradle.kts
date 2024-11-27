@@ -198,7 +198,7 @@ node {
 
 tasks.register("nodeDir") {
 	dependsOn(tasks.nodeSetup)
-	println(node.resolvedNodeDir)
+	println(node.resolvedNodeDir.get())
 }
 
 val npm_run_build by tasks.registering(NpmTask::class) {
