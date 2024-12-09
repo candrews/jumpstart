@@ -13,8 +13,8 @@
   "dependencies": {
     "@date-io/core": "3.0.0",
     "@date-io/moment": "3.0.0",
-    "@emotion/react": "11.13.5",
-    "@emotion/styled": "11.13.5",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
     "@mui/icons-material": "6.1.10",
     "@mui/material": "6.1.10",
     "@types/js-cookie": "3.0.6",
