@@ -129,7 +129,7 @@ tasks.bootBuildImage {
 		// if these image references are not kept up to date, any security issues discovered within them will never be fixed.
 		// Use a tiny builder and run image (which produce a distroless-like image) to reduce both image size and attack surface.
 		builder = "docker.io/paketobuildpacks/builder-jammy-buildpackless-tiny:0.0.158@sha256:57d53619cabc2182c8833b1c3964fab894bb3163f84a76f51d113527969aeace"
-		runImage = "docker.io/paketobuildpacks/run-jammy-tiny:0.2.55@sha256:2d87eb82a91fda704539eb12ffd9b178c44e05a937dad947faabb1341173602b"
+		runImage = "docker.io/paketobuildpacks/run-jammy-tiny:0.2.56@sha256:0c5ac79d549c4b077a7d857631f817f8b573f5da2c109a51f320ee584d44d3f2"
 		buildpacks = listOf(
 			"gcr.io/paketo-buildpacks/ca-certificates:3.8.6@sha256:420c96eac964f520b9b8fee74c3511c357d3e917dc1161f61c75dc2905eeb49b",
 			"gcr.io/paketo-buildpacks/bellsoft-liberica:11.0.0@sha256:2dd2482791e3da077c4a590dace85414c719a1af3ca59992da79606a05e8bf60",
