@@ -2,7 +2,7 @@ import com.github.gradle.node.npm.task.NpmTask
 import com.github.gradle.node.npm.task.NpxTask
 
 plugins {
-	id("io.spring.dependency-management") version "1.1.6"
+	id("io.spring.dependency-management") version "1.1.7"
 	id("org.springframework.boot") version "3.4.0"
 	id("com.gorylenko.gradle-git-properties") version "2.4.2"
 	id("name.remal.sonarlint") version "4.2.16"
