@@ -11,8 +11,8 @@
     "cypress-run": "rm -rf ../build/reports/cypress || true && cypress run"
   },
   "dependencies": {
-    "@date-io/core": "3.0.0",
-    "@date-io/moment": "3.0.0",
+    "@date-io/core": "3.2.0",
+    "@date-io/moment": "3.2.0",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
     "@mui/icons-material": "6.2.1",
