@@ -27,7 +27,7 @@ codespell:
 markdownlint:
   stage: lint
   image:
-    name: davidanson/markdownlint-cli2:v0.17.0@sha256:ff47603c93bb6187df41249069a98fbea1712386076f972e1c01cc302c656af1
+    name: davidanson/markdownlint-cli2:v0.17.1@sha256:14dba37d35f60c21639dcf7fdd81197f8ff1be68bd1e57a03762d1ade9656b7b
     entrypoint: [""]
   script:
     - |
