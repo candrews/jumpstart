@@ -49,7 +49,7 @@ import lombok.extern.slf4j.Slf4j;
 	@Test
 	/* default */ void testLighthouse() throws Exception {
 		Testcontainers.exposeHostPorts(port); // allow the container to access the running web application
-		try (GenericContainer<?> container = new GenericContainer<>("docker.io/cypress/browsers:latest@sha256:0fe8e8bbb2f314f3df522ba690bbcf493d40a9ce934ece22ee50244beafea236")) {
+		try (GenericContainer<?> container = new GenericContainer<>("docker.io/cypress/browsers:latest@sha256:3257a9967bd66a57ed2b4a190f65ef019ce94473241364eade07081274293e08")) {
 			container
 				.withLogConsumer(new Slf4jLogConsumer(log))
 				// pass through environment variables relevant to LHCI
