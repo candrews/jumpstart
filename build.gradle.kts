@@ -15,7 +15,7 @@ plugins {
 	id("eclipse")
 }
 
-val nodeVersion = "22.13.1"
+val nodeVersion = "22.14.0"
 
 group = "com.integralblue.demo"
 version = "0.0.1-SNAPSHOT"
