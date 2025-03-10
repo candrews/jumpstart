@@ -113,6 +113,8 @@ build and test:
       # there is no external network communication to worry about.
       # See https://github.com/testcontainers/testcontainers-java/pull/4573
       command: ["--tls=false"]
+      variables:
+        HEALTHCHECK_TCP_PORT: "2375"
   variables:
     # Instruct Testcontainers to use the daemon of DinD.
     DOCKER_HOST: "tcp://docker:2375"
