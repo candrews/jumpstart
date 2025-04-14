@@ -116,7 +116,7 @@ tasks.withType<AbstractArchiveTask>().configureEach {
 tasks.bootBuildImage {
 	// See: https://paketo.io/docs/howto/java/
 
-	environment = mapOf("BP_JVM_VERSION" to "21")
+	environment = mapOf("BP_JVM_VERSION" to "21", "BP_JVM_CDS_ENABLED" to "true")
 
 	docker {
 		publishRegistry {
