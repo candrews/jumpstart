@@ -82,7 +82,7 @@ shellcheck:
 checkov:
   stage: lint
   image:
-    name: bridgecrew/checkov:3.2.426@sha256:fbb075e0752ca9d3ee306a5dbe2a18f9eff618572b60304e1a3f4e8fb581ea5d
+    name: bridgecrew/checkov:3.2.432@sha256:3d240f8b19b55bcbc4e879d8a96bdc9b9165a4729e4c01a0a5ea29bead649b49
     entrypoint:
       - '/usr/bin/env'
       - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
