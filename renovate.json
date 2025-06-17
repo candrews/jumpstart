@@ -22,8 +22,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [
-        "\\.yml$"
+      "managerFilePatterns": [
+        "/\\.yml$/"
       ],
       "matchStrings": [
         "SARIF_CONVERTER_VERSION *: *\"(?<currentValue>.+?)\""
@@ -34,8 +34,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "\\.yml$"
+      "managerFilePatterns": [
+        "/\\.yml$/"
       ],
       "matchStrings": [
         "SCAP_SECURITY_GUIDE_VERSION *: *\"(?<currentValue>.+?)\""
@@ -45,8 +45,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "\\.yml$"
+      "managerFilePatterns": [
+        "/\\.yml$/"
       ],
       "matchStrings": [
         "MICROSOFT_SARIF_MULTITOOL_VERSION *: *\"(?<currentValue>.+?)\""
@@ -56,8 +56,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "\\.yml$"
+      "managerFilePatterns": [
+        "/\\.yml$/"
       ],
       "matchStrings": [
         "MITRE_SAF_VERSION *: *\"(?<currentValue>.+?)\""
@@ -68,8 +68,8 @@
     {
       "customType": "regex",
       "description": "Update docker references in build.gradle.kts",
-      "fileMatch": [
-        "^build.gradle.kts$"
+      "managerFilePatterns": [
+        "/^build.gradle.kts$/"
       ],
       "matchStrings": [
         "\"(?<depName>(?:gcr\\.io|docker\\.io)\\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?\""
@@ -80,8 +80,8 @@
     {
       "customType": "regex",
       "description": "Update docker references in Java files",
-      "fileMatch": [
-        "\\.java$"
+      "managerFilePatterns": [
+        "/\\.java$/"
       ],
       "matchStrings": [
         "\"(?<depName>(?:gcr\\.io|docker\\.io)\\/[^:]+?):(?<currentValue>[^@]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?\""
@@ -91,8 +91,8 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [
-        "^build.gradle.kts$"
+      "managerFilePatterns": [
+        "/^build.gradle.kts$/"
       ],
       "matchStrings": [
         "nodeVersion *= *\"(?<currentValue>.+?)\";?\n?"
