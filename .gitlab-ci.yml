@@ -210,12 +210,12 @@ scap:
       # see https://www.freedesktop.org/software/systemd/man/os-release.html
       version_id=$(awk -F= '$1=="VERSION_ID" { print $2 ;}' os-release | sed 's/"//g')
       id=$(awk -F= '$1=="ID" { print $2 ;}' os-release | sed 's/"//g')
-      if [ "${id}" = "ubuntu" ] && echo "${version_id}" | grep -qE '^18\.04(\..*)?$' ; then
-        ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ubuntu1804-ds.xml"
-      elif [ "${id}" = "ubuntu" ] && echo "${version_id}" | grep -qE '^20\.04(\..*)?$' ; then
+      if [ "${id}" = "ubuntu" ] && echo "${version_id}" | grep -qE '^20\.04(\..*)?$' ; then
         ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ubuntu2004-ds.xml"
       elif [ "${id}" = "ubuntu" ] && echo "${version_id}" | grep -qE '^22\.04(\..*)?$' ; then\
         ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ubuntu2204-ds.xml"
+      elif [ "${id}" = "ubuntu" ] && echo "${version_id}" | grep -qE '^24\.04(\..*)?$' ; then\
+        ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-ubuntu2404-ds.xml"
       elif [ "${id}" = "centos" ] && echo "${version_id}" | grep -qE '^7(\..*)?$' ; then
         ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-centos7-ds.xml"
       elif [ "${id}" = "centos" ] && echo "${version_id}" | grep -qE '^8(\..*)?$' ; then
@@ -232,6 +232,8 @@ scap:
         ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-rhel8-ds.xml"
       elif [ "${id}" = "rhel" ] && echo "${version_id}" | grep -qE '^9(\..*)?$' ; then
         ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-rhel9-ds.xml"
+      elif [ "${id}" = "rhel" ] && echo "${version_id}" | grep -qE '^10(\..*)?$' ; then
+        ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-rhel10-ds.xml"
       elif [ "${id}" = "sles" ] && echo "${version_id}" | grep -qE '^12(\..*)?$' ; then
         ssg="scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}/ssg-sle12-ds.xml"
       elif [ "${id}" = "sles" ] && echo "${version_id}" | grep -qE '^15(\..*)?$' ; then
