@@ -9,7 +9,7 @@ plugins {
 	//id("nebula.lint") version "18.1.0" // this plugin doesn't (currently?) support Gradle kotlin: https://github.com/nebula-plugins/gradle-lint-plugin/issues/166
 	id("nu.studer.credentials") version "3.0"
 	id("com.github.node-gradle.node") version "7.1.0"
-	id("io.freefair.lombok") version "8.13.1"
+	id("io.freefair.lombok") version "8.14"
 	id("java")
 	id("jacoco")
 	id("eclipse")
