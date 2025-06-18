@@ -15,13 +15,13 @@
        <sqlFile path="org/springframework/session/jdbc/schema-drop-mysql.sql" dbms="mysql" />
        <sqlFile path="org/springframework/session/jdbc/schema-drop-postgresql.sql" dbms="postgresql" />
        <sqlFile path="org/springframework/session/jdbc/schema-drop-sqlite.sql" dbms="sqlite" />
-       <sqlFile path="org/springframework/session/jdbc/schema-drop-sqlserver.sql" dbms="sqlserver" />
+       <sqlFile path="org/springframework/session/jdbc/schema-drop-sqlserver.sql" dbms="mssql" />
 
        <sqlFile path="org/springframework/session/jdbc/schema-h2.sql" dbms="h2" />
        <sqlFile path="org/springframework/session/jdbc/schema-hsqldb.sql" dbms="hsqldb" />
        <sqlFile path="org/springframework/session/jdbc/schema-mysql.sql" dbms="mysql" />
        <sqlFile path="org/springframework/session/jdbc/schema-postgresql.sql" dbms="postgresql" />
        <sqlFile path="org/springframework/session/jdbc/schema-sqlite.sql" dbms="sqlite" />
-       <sqlFile path="org/springframework/session/jdbc/schema-sqlserver.sql" dbms="sqlserver" />
+       <sqlFile path="org/springframework/session/jdbc/schema-sqlserver.sql" dbms="mssql" />
   </changeSet>
 </databaseChangeLog>
