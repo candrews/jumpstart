@@ -49,7 +49,7 @@ import lombok.extern.slf4j.Slf4j;
 	@Test
 	/* default */ void testLighthouse() throws Exception {
 		Testcontainers.exposeHostPorts(port); // allow the container to access the running web application
-		try (GenericContainer<?> container = new GenericContainer<>("docker.io/cypress/browsers:latest@sha256:05d30b925653f91952649fe3aa7ee26202172bc8e6db41ec9da5988f73e04d6c")) {
+		try (GenericContainer<?> container = new GenericContainer<>("docker.io/patrickhulce/lhci-client:" + lhciVersion)) {
 			container
 				.withLogConsumer(new Slf4jLogConsumer(log))
 				// pass through environment variables relevant to LHCI
@@ -57,11 +57,10 @@ import lombok.extern.slf4j.Slf4j;
 				.withEnv(System.getenv().entrySet().stream()
 						.filter(e -> e.getKey().startsWith(LHCI_ENVIRONMENT_NAME_PREFIX) || e.getKey().startsWith(CI_ENVIRONMENT_NAME_PREFIX) || e.getKey().startsWith(GITHUB_ENVIRONMENT_NAME_PREFIX))
 						.collect(Collectors.toMap(Entry::getKey, Entry::getValue)))
-				.withCopyFileToContainer(MountableFile.forHostPath(Path.of("frontend/lighthouserc.yml")), "/src/lighthouserc.yml")
-				.withCopyFileToContainer(MountableFile.forHostPath(Path.of("frontend/puppeteer-script.js")), "/src/puppeteer-script.js")
-				.withWorkingDirectory("/src")
+				.withCopyFileToContainer(MountableFile.forHostPath(Path.of("frontend/lighthouserc.yml")), "/home/lhci/reports/lighthouserc.yml")
+				.withCopyFileToContainer(MountableFile.forHostPath(Path.of("frontend/puppeteer-script.js")), "/home/lhci/reports/puppeteer-script.js")
 				.withCreateContainerCmdModifier(c -> c.withEntrypoint(""))
-				.withCommand("/bin/sh", "-c", String.format("npm install -g @lhci/cli@%s puppeteer && lhci autorun --collect.startServerCommand=\"\" --collect.url=\"https://%s:%d\"", lhciVersion, GenericContainer.INTERNAL_HOST_HOSTNAME, port))
+				.withCommand("/bin/sh", "-c", String.format("lhci autorun --collect.startServerCommand=\"\" --collect.url=\"https://%s:%d\"", GenericContainer.INTERNAL_HOST_HOSTNAME, port))
 				.withStartupCheckStrategy(
 						new OneShotStartupCheckStrategy().withTimeout(Duration.ofHours(1))
 						).start();

@@ -6,6 +6,7 @@ ci:
     puppeteerLaunchOptions:
       args:
         - '--no-sandbox'
+        - '--disable-setuid-sandbox'
         - '--headless'
         - '--ignore-certificate-errors'
     numberOfRuns: 3
