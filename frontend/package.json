@@ -46,7 +46,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "jsdom": "26.1.0",
     "mocha-junit-reporter": "2.2.1",
-    "nock": "14.0.9",
+    "nock": "14.0.10",
     "puppeteer": "24.16.1",
     "typescript": "5.9.2",
     "vite": "7.1.2",
