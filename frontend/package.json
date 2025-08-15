@@ -18,7 +18,7 @@
     "@mui/icons-material": "7.3.1",
     "@mui/material": "7.3.1",
     "@types/js-cookie": "3.0.6",
-    "@types/node": "22.17.1",
+    "@types/node": "22.17.2",
     "@types/react": "19.1.10",
     "@types/react-dom": "19.1.7",
     "@types/react-router-dom": "5.3.3",
