@@ -112,7 +112,7 @@ jobs:
     container:
       image: alpine:3.22.1@sha256:4bcff63911fcb4448bd4fdacec207030997caf25e9bea4045fa6c8c44de311d1
       env:
-        SCAP_SECURITY_GUIDE_VERSION: "0.1.77"
+        SCAP_SECURITY_GUIDE_VERSION: "0.1.78"
         MICROSOFT_SARIF_MULTITOOL_VERSION: "4.5.4"
         MITRE_SAF_VERSION: "1.4.22"
         SSG_DIR: "ssg"
