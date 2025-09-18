@@ -39,7 +39,7 @@ dependencyLocking {
 }
 
 lombok {
-    version = "1.18.40"
+    version = "1.18.42"
 }
 
 jacoco {
