@@ -25,7 +25,7 @@ repositories {
 }
 
 tasks.compileJava {
-	options.release = 21
+	options.release = 25
 }
 
 // Enable dependency locking: https://docs.gradle.org/current/userguide/dependency_locking.html
@@ -116,7 +116,7 @@ tasks.withType<AbstractArchiveTask>().configureEach {
 tasks.bootBuildImage {
 	// See: https://paketo.io/docs/howto/java/
 
-	environment = mapOf("BP_JVM_VERSION" to "21")
+	environment = mapOf("BP_JVM_VERSION" to "25")
 
 	docker {
 		publishRegistry {
