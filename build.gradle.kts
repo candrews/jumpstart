@@ -5,7 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 	id("org.springframework.boot") version "3.5.6"
 	id("com.gorylenko.gradle-git-properties") version "2.5.3"
-	id("name.remal.sonarlint") version "5.1.9"
+	id("name.remal.sonarlint") version "6.0.0"
 	//id("nebula.lint") version "18.1.0" // this plugin doesn't (currently?) support Gradle kotlin: https://github.com/nebula-plugins/gradle-lint-plugin/issues/166
 	id("nu.studer.credentials") version "3.0"
 	id("com.github.node-gradle.node") version "7.1.0"
@@ -16,6 +16,11 @@ plugins {
 }
 
 val nodeVersion = "22.20.0"
+
+// sonarlint requires commons-lang3 >= 3.18.0
+// See https://github.com/remal-gradle-plugins/sonarlint/issues/643
+// Remove when Spring Boot uses 3.18.0 (or later), which should be Spring Boot 3.5.7
+extra["commons-lang3.version"] = "3.18.0"
 
 group = "com.integralblue.demo"
 version = "0.0.1-SNAPSHOT"
@@ -91,17 +96,9 @@ gradleLint {
 }
 */
 
-tasks.sonarlintMain {
-	dependsOn(tasks.nodeSetup)
-}
-
-tasks.sonarlintTest {
-	dependsOn(tasks.nodeSetup)
-}
-
 sonarLint {
-	nodeJs {
-		nodeJsExecutable = project.provider{ file("${node.resolvedNodeDir.get()}/bin/node") }
+	languages {
+		includeFrontend = true
 	}
 }
 
