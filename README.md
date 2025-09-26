@@ -9,7 +9,7 @@ The demonstrated application itself is a simple "Hello World" application. There
 ## Included Technologies
 
 * Backend
-  * Java 21
+  * Java 25
   * [Spring Boot](https://spring.io/projects/spring-boot)
   * [Project Lombok](https://projectlombok.org)
   * [Gradle](https://gradle.org/)
@@ -52,7 +52,7 @@ And now go do the real work :-)
 
 ## Developer Setup
 
-This project requires Java 21 (or later).
+This project requires Java 25 (or later).
 Import this Gradle project using your IDE of choice.
 Or, if you don't want to use an IDE, you can run the project from the command line: `./gradlew bootTestRun` The site will be accessible at [https://localhost:8443](https://localhost:8443)
 
