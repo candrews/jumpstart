@@ -113,7 +113,7 @@ jobs:
       image: alpine:3.22.2@sha256:4b7ce07002c69e8f3d704a9c5d6fd3053be500b7f1c69fc0d80990c2ad8dd412
       env:
         SCAP_SECURITY_GUIDE_VERSION: "0.1.78"
-        MICROSOFT_SARIF_MULTITOOL_VERSION: "4.5.4"
+        MICROSOFT_SARIF_MULTITOOL_VERSION: "4.6.0"
         MITRE_SAF_VERSION: "1.5.1"
         SSG_DIR: "ssg"
     steps:
