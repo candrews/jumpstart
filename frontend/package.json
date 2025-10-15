@@ -47,7 +47,7 @@
     "jsdom": "27.0.0",
     "mocha-junit-reporter": "2.2.1",
     "nock": "14.0.10",
-    "puppeteer": "24.24.1",
+    "puppeteer": "24.25.0",
     "typescript": "5.9.3",
     "vite": "7.1.10",
     "vitest": "3.2.4"
