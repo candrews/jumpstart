@@ -130,7 +130,7 @@ tasks.bootBuildImage {
 		buildpacks = listOf(
 			"docker.io/paketobuildpacks/ca-certificates:3.10.4@sha256:b915c47d4ea97142e8ecc56f672f3f92210fed9adf1e11da1755633ac521ec3c",
 			"docker.io/paketobuildpacks/bellsoft-liberica:11.4.0@sha256:534f403fe06b6d4009e44c058ae1824076822e8f2a37987975ae698a704b8f1f",
-			"docker.io/paketobuildpacks/syft:2.21.0@sha256:b88e7d33dbfef60f2015e53b1a7b862477a05fc228c9ca178a185fdb056323cb",
+			"docker.io/paketobuildpacks/syft:2.22.1@sha256:d056a12b5567b55c61cbe0904e8d05bd23170a986748868d7918b6ed37d698ec",
 			"docker.io/paketobuildpacks/executable-jar:6.13.3@sha256:d24b562ecf0b282e8270aafe4caff6df0335ee910759477ee0ef7dc00ce0a9c5",
 			"docker.io/paketobuildpacks/dist-zip:5.10.3@sha256:0d2ec1d0970fe1e45185ae7e660ebbf9f907bfb30a31e93885885618b394e3d7",
 			"docker.io/paketobuildpacks/spring-boot:5.33.4@sha256:06377ade593a0b40cebca09c1f6c47b682d0c631c855e701fcaf6bb2a7c8df59",
