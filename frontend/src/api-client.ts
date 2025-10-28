@@ -6,6 +6,6 @@ export const apiClient = async (input: RequestInfo, { headers, ...init }: Reques
     input,
     { ...init, headers: csrfToken ? { 'X-XSRF-TOKEN': csrfToken, ...headers } : headers },
   );
-  if (response.status >= 400) return Promise.reject(response);
+  if (response.status >= 400) throw response;
   return response;
 };
