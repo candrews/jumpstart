@@ -36,7 +36,7 @@
     "@testing-library/react": "^16.0.0",
     "@typescript-eslint/eslint-plugin": "8.46.4",
     "@typescript-eslint/parser": "8.46.4",
-    "@vitejs/plugin-react": "5.1.0",
+    "@vitejs/plugin-react": "5.1.1",
     "@vitest/coverage-v8": "4.0.8",
     "cypress": "15.6.0",
     "cypress-multi-reporters": "2.0.5",
