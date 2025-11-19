@@ -125,7 +125,7 @@ tasks.bootBuildImage {
 		// make sure to configure Renovate to keep these image references up to date.
 		// if these image references are not kept up to date, any security issues discovered within them will never be fixed.
 		// Use a tiny builder and run image (which produce a distroless-like image) to reduce both image size and attack surface.
-		builder = "docker.io/paketobuildpacks/builder-noble-java-tiny:0.0.80@sha256:b78dabcb746086f1581fa141efb5872c98fbe645578fb8b601cc4590a5c27fe7"
+		builder = "docker.io/paketobuildpacks/builder-noble-java-tiny:0.0.81@sha256:b6dd5d173f5262395aa5208802f2e0982b7a6e0d3fe7904080f24dec9be7e980"
 		runImage = "docker.io/paketobuildpacks/ubuntu-noble-run-tiny:0.0.41@sha256:aa3130485cc072185ab0e0271609cbfd06866440faf08b657b29592f92271689"
 		buildpacks = listOf(
 			"docker.io/paketobuildpacks/ca-certificates:3.10.5@sha256:95a7454664cb76ba45918d6ac63b42219123229381e4b863afeae9fbb6b1df1c",
