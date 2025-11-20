@@ -20,8 +20,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class FixedUsernamePasswordSecurityConfiguration {
 
 	@Bean
-	@SuppressWarnings("PMD.SignatureDeclareThrowsException")
-	public SecurityFilterChain filterChain(final @NonNull HttpSecurity http) throws Exception {
+	public SecurityFilterChain filterChain(final @NonNull HttpSecurity http) {
 		return
 			http
 			.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
