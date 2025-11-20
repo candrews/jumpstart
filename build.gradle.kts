@@ -3,7 +3,7 @@ import com.github.gradle.node.npm.task.NpxTask
 
 plugins {
 	id("io.spring.dependency-management") version "1.1.7"
-	id("org.springframework.boot") version "3.5.7"
+	id("org.springframework.boot") version "4.0.0"
 	id("com.gorylenko.gradle-git-properties") version "2.5.4"
 	id("name.remal.sonarlint") version "6.0.0"
 	//id("nebula.lint") version "18.1.0" // this plugin doesn't (currently?) support Gradle kotlin: https://github.com/nebula-plugins/gradle-lint-plugin/issues/166
@@ -55,24 +55,24 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-session-jdbc")
+	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.session:spring-session-jdbc")
-	implementation("org.liquibase:liquibase-core")
+	implementation("org.springframework.boot:spring-boot-starter-liquibase")
 
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	annotationProcessor("org.hibernate.validator:hibernate-validator-annotation-processor")
 
 	testAndDevelopmentOnly("org.springframework.boot:spring-boot-devtools")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.mockito:mockito-junit-jupiter")
 	runtimeOnly("org.postgresql:postgresql")
-	runtimeOnly("net.lbruun.springboot:preliquibase-spring-boot-starter:1.6.1") // necessary to create the db schema before liquibase runs so liquibase can use the created schema
+	runtimeOnly("net.lbruun.springboot:preliquibase-spring-boot-starter:2.0.0") // necessary to create the db schema before liquibase runs so liquibase can use the created schema
 	testImplementation("org.testcontainers:testcontainers")
-	testImplementation("org.testcontainers:junit-jupiter")
-	testImplementation("org.testcontainers:postgresql")
+	testImplementation("org.testcontainers:testcontainers-junit-jupiter")
+	testImplementation("org.testcontainers:testcontainers-postgresql")
 }
 
 configurations {
