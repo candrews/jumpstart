@@ -40,7 +40,7 @@
     "@vitest/coverage-v8": "4.0.15",
     "cypress": "15.7.1",
     "cypress-multi-reporters": "2.0.5",
-    "eslint": "9.39.1",
+    "eslint": "9.39.2",
     "eslint-plugin-anti-trojan-source": "^1.1.0",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
