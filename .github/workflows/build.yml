@@ -94,7 +94,7 @@ jobs:
           output_format: cli,sarif
           output_file_path: console,results.sarif
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@1b168cd39490f61582a9beae412bb7057a6b2c4e # v4
+        uses: github/codeql-action/upload-sarif@5d4e8d1aca955e8d8589aabd499c5cae939e33c7 # v4
         # Results are generated only on a success or failure
         # this is required since GitHub by default won't run the next step
         # when the previous one has failed. Security checks that do not pass will 'fail'.
@@ -248,7 +248,7 @@ jobs:
             openscap-report.hdf.json
             openscap-report.sarif
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@1b168cd39490f61582a9beae412bb7057a6b2c4e # v4
+        uses: github/codeql-action/upload-sarif@5d4e8d1aca955e8d8589aabd499c5cae939e33c7 # v4
         # Results are generated only on a success or failure
         # this is required since GitHub by default won't run the next step
         # when the previous one has failed. Security checks that do not pass will 'fail'.
