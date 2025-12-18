@@ -110,7 +110,7 @@ jobs:
       actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     runs-on: ubuntu-latest
     container:
-      image: alpine:3.23.0@sha256:51183f2cfa6320055da30872f211093f9ff1d3cf06f39a0bdb212314c5dc7375
+      image: alpine:3.23.2@sha256:c93cec902b6a0c6ef3b5ab7c65ea36beada05ec1205664a4131d9e8ea13e405d
       env:
         SCAP_SECURITY_GUIDE_VERSION: "0.1.79"
         MICROSOFT_SARIF_MULTITOOL_VERSION: "4.6.0"
