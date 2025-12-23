@@ -114,7 +114,7 @@ jobs:
       env:
         SCAP_SECURITY_GUIDE_VERSION: "0.1.79"
         MICROSOFT_SARIF_MULTITOOL_VERSION: "4.6.0"
-        MITRE_SAF_VERSION: "1.5.2"
+        MITRE_SAF_VERSION: "1.5.3"
         SSG_DIR: "ssg"
     steps:
       - name: Install prerequisites
