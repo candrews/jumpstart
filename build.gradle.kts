@@ -15,7 +15,7 @@ plugins {
 	id("eclipse")
 }
 
-val nodeVersion = "24.13.0"
+val nodeVersion = "24.13.1"
 
 // sonarlint requires commons-lang3 >= 3.18.0
 // See https://github.com/remal-gradle-plugins/sonarlint/issues/643
