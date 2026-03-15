@@ -133,7 +133,7 @@ tasks.bootBuildImage {
 			"docker.io/paketobuildpacks/syft:2.31.0@sha256:0e1cae52e94694e57fca1b992114546a479d9883faa9aa16bc9716b60fdca687",
 			"docker.io/paketobuildpacks/executable-jar:6.15.0@sha256:8348ade75fceff7b4470bd0cf6e16cf41b197d868140c04dab33b5984537c58d",
 			"docker.io/paketobuildpacks/dist-zip:5.12.1@sha256:a5c17b6275042e0ed5303aed457a74326a88befc7c90e58e9405ca25b62256c9",
-			"docker.io/paketobuildpacks/spring-boot:5.36.0@sha256:4ce0f1759abe90e5841d3d93e26d0697f3c71bdd809fbdae29e074ac439f1630",
+			"docker.io/paketobuildpacks/spring-boot:5.36.1@sha256:caf9c77b7e0da2463b2782fbc065d9ca6e81384c744eb129d46d7e72fb231e67",
 		)
 	}
 }
