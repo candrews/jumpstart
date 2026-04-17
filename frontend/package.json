@@ -38,7 +38,7 @@
     "@typescript-eslint/parser": "8.58.2",
     "@vitejs/plugin-react": "6.0.1",
     "@vitest/coverage-v8": "4.1.4",
-    "cypress": "15.13.1",
+    "cypress": "15.14.0",
     "cypress-multi-reporters": "2.0.5",
     "eslint": "9.39.4",
     "eslint-plugin-anti-trojan-source": "^1.1.0",
