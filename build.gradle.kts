@@ -131,7 +131,7 @@ tasks.bootBuildImage {
 			"docker.io/paketobuildpacks/ca-certificates:3.12.1@sha256:7c730573b2b5272690b13614d67a1ee9befbfd7242f7527bcc1d11cef328134d",
 			"docker.io/paketobuildpacks/bellsoft-liberica:11.7.1@sha256:b07fd5a673821caf1f53e0f93a7813ce98fcece399ecb72ec60b9b3be17450e4",
 			"docker.io/paketobuildpacks/syft:2.31.4@sha256:03d74321890525e922177c13d6e32cb6e8f1b9d8a292e05dfe87a7f8bd0e5eac",
-			"docker.io/paketobuildpacks/executable-jar:6.15.1@sha256:aaab2b7017b09297e3699541276a692bf89ab40ec107e686a1bfd7028bd9ab1c",
+			"docker.io/paketobuildpacks/executable-jar:6.15.2@sha256:7e35f824da78aceaa5d5d6fbcb1a0b2f2c9b38aba2c5837ab44674597fba31ef",
 			"docker.io/paketobuildpacks/dist-zip:5.12.1@sha256:a5c17b6275042e0ed5303aed457a74326a88befc7c90e58e9405ca25b62256c9",
 			"docker.io/paketobuildpacks/spring-boot:5.36.1@sha256:caf9c77b7e0da2463b2782fbc065d9ca6e81384c744eb129d46d7e72fb231e67",
 		)
