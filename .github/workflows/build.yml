@@ -130,7 +130,7 @@ jobs:
           curl "https://github.com/ComplianceAsCode/content/releases/download/v${SCAP_SECURITY_GUIDE_VERSION}/scap-security-guide-${SCAP_SECURITY_GUIDE_VERSION}.zip" -Lso "${SSG_DIR}/ssg.zip"
           unzip "${SSG_DIR}/ssg.zip" -d "${SSG_DIR}"
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@06fb636fac595d6fb4b28a5dfcb21a6f5091859c # v4
+        uses: docker/login-action@abd2ef45e78c5afb21d64d4ca52ee8550d9572c7 # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
