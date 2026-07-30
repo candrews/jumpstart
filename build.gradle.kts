@@ -129,7 +129,7 @@ tasks.bootBuildImage {
 		runImage = "docker.io/paketobuildpacks/ubuntu-noble-run-tiny:0.0.107@sha256:8139e9b389ad2d633082783d9025f96ba79f032a667f2a9f9eebe1710de5bd9f"
 		buildpacks = listOf(
 			"docker.io/paketobuildpacks/ca-certificates:3.12.5@sha256:7c63a21d6cbd50a527b9895307f1791ed3b3d96cffa3039089dd9079d81cdd0d",
-			"docker.io/paketobuildpacks/bellsoft-liberica:11.8.1@sha256:7081bb8fd76b564fb633552c3e6a945e28b82531b360f42d8008c8533bcfc34f",
+			"docker.io/paketobuildpacks/bellsoft-liberica:11.8.2@sha256:49b28ea0c9d9f58eac66b489954134cf1a8230f73b8e4f1e9525f364d61dfad6",
 			"docker.io/paketobuildpacks/syft:2.38.0@sha256:8e2f410eb33b84681763e9b5894215aac5cc19b0b3e2e0d27c080536365aaa46",
 			"docker.io/paketobuildpacks/executable-jar:6.15.5@sha256:ddbe753906a8d584b310c2ae59ddb24e9a409cd269c294bd6f53487188bfdcae",
 			"docker.io/paketobuildpacks/dist-zip:5.12.5@sha256:5b0a3c8041473d12e1b3f22b894d1cd800189f4ed8ce8b77a7fb10a1ad0edef7",
