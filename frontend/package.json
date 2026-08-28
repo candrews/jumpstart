@@ -37,7 +37,7 @@
     "@typescript-eslint/eslint-plugin": "8.67.0",
     "@typescript-eslint/parser": "8.67.0",
     "@vitejs/plugin-react": "6.0.5",
-    "@vitest/coverage-v8": "4.1.10",
+    "@vitest/coverage-v8": "4.1.11",
     "cypress": "15.20.1",
     "cypress-multi-reporters": "2.0.5",
     "eslint": "9.39.5",
@@ -50,7 +50,7 @@
     "puppeteer": "25.8.0",
     "typescript": "5.9.3",
     "vite": "8.2.2",
-    "vitest": "4.1.10"
+    "vitest": "4.1.11"
   },
   "browserslist": {
     "production": [
