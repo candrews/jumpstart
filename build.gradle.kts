@@ -126,7 +126,7 @@ tasks.bootBuildImage {
 		// if these image references are not kept up to date, any security issues discovered within them will never be fixed.
 		// Use a tiny builder and run image (which produce a distroless-like image) to reduce both image size and attack surface.
 		builder = "docker.io/paketobuildpacks/builder-noble-java-tiny:0.0.194@sha256:a5100b7d8459812510c7f62725e29437880eeb15d3ce659dfd01f2cfae7f1d10"
-		runImage = "docker.io/paketobuildpacks/ubuntu-noble-run-tiny:0.0.136@sha256:b5d00dc2e42e08fa6ec194ba187dfe9ff3972a15c5902847bc19c56fa8a1e1bd"
+		runImage = "docker.io/paketobuildpacks/ubuntu-noble-run-tiny:0.0.137@sha256:dc90cbdbbff35916ff5a26409f29f0525cbc7fa76cc317adca856c4127ebf2ba"
 		buildpacks = listOf(
 			"docker.io/paketobuildpacks/ca-certificates:3.14.0@sha256:8006097f244e804d0c9d428c27432aac76d9336ff5f431262a6931dd6e73122a",
 			"docker.io/paketobuildpacks/bellsoft-liberica:11.10.0@sha256:0ed82aba4ddcfa02c834f987d32aa9eebf01ba14b50920418f41f849039c58cd",
